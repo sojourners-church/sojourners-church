@@ -222,8 +222,6 @@ content:
         }
       - { name: order, label: Order, type: number }
       - { name: body, label: Body, type: rich-text }
-
-
   - name: config
     label: Site Config
     type: file
