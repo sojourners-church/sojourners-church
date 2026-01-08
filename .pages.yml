@@ -270,10 +270,11 @@ content:
                 label: Hero Text
                 type: code
                 options: { language: html }
-              - name: isBgImage
+              - name: bgImage
                 label: Background Image
-                type: boolean
-                default: true
+                type: image
+                options:
+                  extensions: [webp]
           - name: cta
             label: CTA Button
             type: object
