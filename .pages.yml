@@ -223,16 +223,22 @@ content:
       - { name: order, label: Order, type: number }
       - { name: body, label: Body, type: rich-text }
 
+
   - name: config
     label: Site Config
     type: file
     path: src/_site-config.json
     fields:
+      - name: general
+        label: General Settings
+        type: object
+        fields:
+          - { name: name, label: Church Name, type: string }
+          - { name: youtube, label: YouTube Channel, type: string}
       - name: header
         label: Header
         type: object
         fields: 
-           - { name: name, label: Church Name, type: string }
            - { name: logo, label: Logo, type: image }
            - name: menu
              label: Menu
