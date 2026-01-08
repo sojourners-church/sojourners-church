@@ -34,7 +34,7 @@ const { left, form, give } = config.footer;
         <section class="flex flex-col gap-4">
           <div class="flex flex-col gap-2">
             <StyledText as="h2" variant="heading" set:html={form.heading} />
-            <Markdown.Inline of={form.description} />
+            <div set:html={form.description} />
           </div>
           <SubscribeForm client:idle />
         </section>
@@ -44,7 +44,7 @@ const { left, form, give } = config.footer;
     <section class="flex flex-col gap-4">
       <div class="flex flex-col gap-2">
         <StyledText as="h2" variant="heading" set:html={give.heading} />
-        <Markdown.Inline of={give.description} />
+        <div set:html={give.description} />
       </div>
       <ButtonLink target="_blank" href={give.link} variant="footer-button"
         >Give</ButtonLink
