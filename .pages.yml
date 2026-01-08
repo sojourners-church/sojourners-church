@@ -274,8 +274,6 @@ content:
                 label: Background Image
                 description: Use https://squoosh.app/ to process images.
                 type: image
-                options:
-                  extensions: [webp]
           - name: cta
             label: CTA Button
             type: object
