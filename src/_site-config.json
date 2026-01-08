@@ -1,54 +1,62 @@
 {
-  "info": {
+  "header": {
     "name": "Sojourners Church",
-    "address": "1679 West Main Street<br />\nSkyline Plaza<br />\nAlbert Lea, MN 56007",
-    "phone": "(507) 552-1595",
-    "favicon": "/favicon.svg"
+    "menu": [
+      {
+        "title": "About Us",
+        "subMenu": [
+          {
+            "title": "What We Believe"
+          },
+          {
+            "title": "Leadership"
+          },
+          {
+            "title": "Partnerships"
+          }
+        ]
+      },
+      {
+        "title": "Life Together",
+        "subMenu": [
+          {
+            "title": "Sundays"
+          },
+          {
+            "title": "Community Rhythms"
+          },
+          {
+            "title": "Church Membership"
+          }
+        ]
+      },
+      {
+        "title": "Sermons"
+      },
+      {
+        "title": "Writings"
+      },
+      {
+        "title": "What is the gospel?"
+      }
+    ]
   },
-  "homepage": {
-    "hero": "<span class=\"opacity-40\">We exist to be and make</span><br />\n<span class=\"text-primary\">eternally joyful disciples</span><br />\n<span class=\"opacity-40\">of Jesus Christ</span>",
-    "cta": {
-      "text": "10 am Sundays at the Skyline Plaza | Click here for livestream",
-      "link": "http://youtube.com/channel/UC5HBSGOC-FxOa3-ERY5X6mw/live"
-    }
+  "hero": "<span class=\\\"opacity-40\\\">We exist to be and make</span><br />\\n<span class=\\\"text-primary\\\">eternally joyful disciples</span><br />\\n<span class=\\\"opacity-40\\\">of Jesus Christ</span>",
+  "cta": {
+    "text": "10 am Sundays | Click here for livestream",
+    "link": "http://youtube.com/channel/UC5HBSGOC-FxOa3-ERY5X6mw/live"
   },
-  "menu": [
-    {
-      "title": "About Us",
-      "subMenu": [
+  "footer": {
+    "left": {
+      "section": [
         {
-          "title": "What We Believe"
-        },
-        {
-          "title": "Leadership"
-        },
-        {
-          "title": "Church Membership"
-        },
-        {
-          "title": "Partnerships"
+          "heading": "Sundays at 10am",
+          "description": "1679 West Main Street Skyline Plaza Albert Lea, MN 56007"
         }
       ]
     },
-    {
-      "title": "Life Together",
-      "subMenu": [
-        {
-          "title": "Sundays"
-        },
-        {
-          "title": "Community Rhythms"
-        }
-      ]
-    },
-    {
-      "title": "Sermons"
-    },
-    {
-      "title": "Writings"
-    },
-    {
-      "title": "What is the gospel?"
+    "form": {
+      "active": true
     }
-  ]
+  }
 }
