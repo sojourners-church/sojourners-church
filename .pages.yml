@@ -289,6 +289,9 @@ content:
                   - name: link
                     label: Link
                     type: string
+                  - name: hint
+                    label: Hint
+                    type: string
           - name: form
             label: Form
             type: object
