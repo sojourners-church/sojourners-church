@@ -240,6 +240,18 @@ content:
         type: object
         fields: 
            - { name: logo, label: Logo, type: image }
+           - name: events
+             label: Events Page
+             type: object
+             fields:
+               - name: useEvents
+                 label: Use Events Page
+                 type: boolean
+               - name: eventsPath
+                 label: Events Path
+                 description: Enter the path using a slugified relative url (e.g. "life-together/calendar") matching the menu position of the events link below.
+                 type: string
+                 
            - name: menu
              label: Menu
              type: object
