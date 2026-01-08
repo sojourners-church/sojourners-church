@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC, type HTMLProps } from "react";
+import { useEffect, useRef, useState, type FC, type HTMLProps } from "react";
 import { SearchIcon } from "lucide-react";
 
 import {
@@ -9,6 +9,7 @@ import {
 
 import { useNanostoreURLSync } from "@/lib/hooks/useNanostoreURLSync";
 import { useDebounce } from "@/lib/hooks/useDebounce";
+import { useHotkeys } from "react-hotkeys-hook";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                     */
@@ -24,6 +25,12 @@ const Search: FC<HTMLProps<HTMLDivElement> & SearchProps> = ({
   className,
   type,
 }) => {
+  const inputRef = useRef(null);
+
+  useHotkeys("meta+k", () => {
+    inputRef.current.focus();
+  });
+
   // Determine the nanostore key based on type
   const storeKey =
     type === "sermons" ? "sermonSearchTerm" : "writingsSearchTerm";
@@ -59,6 +66,7 @@ const Search: FC<HTMLProps<HTMLDivElement> & SearchProps> = ({
         }}
         placeholder={placeholder}
         className="placeholder:text-muted-foreground text-foreground placeholder:italic"
+        ref={inputRef}
       />
       <InputGroupAddon>
         <SearchIcon />
