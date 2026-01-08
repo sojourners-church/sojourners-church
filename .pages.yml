@@ -288,6 +288,14 @@ content:
                   - name: link
                     label: Link
                     type: string
+          - name: form
+            label: Form
+            type: object
+            fields:
+              - name: active
+                label: Active
+                type: boolean
+                default: true
       - name: info
         label: Church Information
         type: object
