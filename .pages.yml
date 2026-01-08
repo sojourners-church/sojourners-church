@@ -266,9 +266,17 @@ content:
             label: Left
             type: object
             fields:
-              - name: heading
-                label: description
-                type: string
+              - name: section
+                label: Section
+                type: object
+                list: true
+                fields:
+                  - name: heading
+                    label: Heading
+                    type: string
+                  - name: description
+                    label: Description
+                    type: string
               - name: social
                 label: Social Icons
                 type: object
