@@ -57,6 +57,16 @@
           "heading": "Contact Us",
           "description": "[_hello@sojourners.church_](mailto:hello@sojourners.church)_  \n(507) 552-1595_"
         }
+      ],
+      "social": [
+        {
+          "icon": "simple-icons:facebook",
+          "link": "https://www.facebook.com/SojournersMN"
+        },
+        {
+          "icon": "simple-icons:youtube",
+          "link": "https://www.youtube.com/@sojournerschurch7048"
+        }
       ]
     },
     "form": {
