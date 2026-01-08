@@ -73,7 +73,8 @@
         },
         {
           "icon": "sms:+15075521595",
-          "link": "material-symbols:sms"
+          "link": "material-symbols:sms",
+          "hint": "Click to send text message"
         }
       ]
     },
