@@ -4,6 +4,10 @@
     "youtube": "https://www.youtube.com/@CodinginPublic"
   },
   "header": {
+    "events": {
+      "useEvents": true,
+      "eventsPath": "life-together/calendar"
+    },
     "menu": [
       {
         "title": "About Us",
@@ -30,6 +34,9 @@
           },
           {
             "title": "Church Membership"
+          },
+          {
+            "title": "Calendar"
           }
         ]
       },
