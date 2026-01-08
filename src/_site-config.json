@@ -55,7 +55,7 @@
         },
         {
           "heading": "Contact Us",
-          "description": "[_hello@sojourners.church_](mailto:hello@sojourners.church)_  \n(507) 552-1595_"
+          "description": "[_hello@sojourners.church_](mailto:hello@sojourners.church)\\_  \n(507) 552-1595\\_"
         }
       ],
       "social": [
@@ -66,11 +66,26 @@
         {
           "icon": "simple-icons:youtube",
           "link": "https://www.youtube.com/@sojournerschurch7048"
+        },
+        {
+          "icon": "simple-icons:spotify",
+          "link": "https://open.spotify.com/show/4XUQE1mKNoKG2r4Ovr7FoQ?si=89b3897946374748"
+        },
+        {
+          "icon": "sms:+15075521595",
+          "link": "material-symbols:sms"
         }
       ]
     },
     "form": {
-      "active": true
+      "active": true,
+      "heading": "Weekly Bulletin",
+      "description": "Sign up to stay informed and connected to Sojourners Church weekly happenings."
+    },
+    "give": {
+      "heading": "Give to Sojourners",
+      "description": "Click below to set up a one time or recurring gift to Sojourners Church.",
+      "link": "https://give.tithe.ly/?formId=7ddcb78e-6865-11ee-90fc-1260ab546d11"
     }
   }
 }
