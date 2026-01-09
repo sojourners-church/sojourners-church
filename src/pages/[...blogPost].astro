@@ -9,21 +9,18 @@ import { blogPath } from "@/lib/nav";
 
 import type { GetStaticPaths } from "astro";
 
-// Prevent manually visiting the path if option set to false
-if (!blogPath) {
-  return Astro.redirect("/404");
-}
-
 // Get static paths
 export const getStaticPaths = (async () => {
-  return (await getCollection("writings")).map((page) => ({
-    params: {
-      blogPost: `${blogPath?.path}/${page.id}`,
-    },
-    props: {
-      page,
-    },
-  }));
+  return blogPath
+    ? (await getCollection("writings")).map((page) => ({
+        params: {
+          blogPost: `${blogPath?.path}/${page.id}`,
+        },
+        props: {
+          page,
+        },
+      }))
+    : [];
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;

@@ -4,19 +4,12 @@ import Filter from "@/components/Filters/Filter";
 import { CardDisplay } from "@/components/Cards/CardDisplay";
 import { blogPath } from "@/lib/nav";
 
-import type { GetStaticPaths } from "astro";
-
-// Prevent manually visiting the path if option set to false
-if (!blogPath) {
-  return Astro.redirect("/404");
-}
+import { getCollection } from "astro:content";
 
 // Get static paths
-export const getStaticPaths = (async () => {
-  return [{ params: { blogRoot: blogPath?.path } }];
-}) satisfies GetStaticPaths;
-
-import { getCollection } from "astro:content";
+export const getStaticPaths = () => {
+  return blogPath ? [{ params: { blogRoot: blogPath.path } }] : [];
+};
 
 const allWritings = (await getCollection("writings")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
@@ -36,11 +29,15 @@ const getTags = () => {
 };
 ---
 
-<BaseLayout pageTitle={blogPath.label || "Blog"}>
-  <main class="layout-base gap-8 py-8">
-    <section class="flex flex-col gap-2">
-      <Filter {allWritings} allTags={getTags()} client:only="react" />
-      <CardDisplay data={allWritings} baseUrl={blogPath.path} client:load />
-    </section>
-  </main>
-</BaseLayout>
+{
+  blogPath && (
+    <BaseLayout pageTitle={blogPath.label || "Blog"}>
+      <main class="layout-base gap-8 py-8">
+        <section class="flex flex-col gap-2">
+          <Filter {allWritings} allTags={getTags()} client:only="react" />
+          <CardDisplay data={allWritings} baseUrl={blogPath.path} client:load />
+        </section>
+      </main>
+    </BaseLayout>
+  )
+}
