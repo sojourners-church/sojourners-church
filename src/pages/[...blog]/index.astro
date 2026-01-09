@@ -8,7 +8,7 @@ import { getCollection } from "astro:content";
 
 // Get static paths
 export const getStaticPaths = () => {
-  return blogPath ? [{ params: { blogRoot: blogPath.path } }] : [];
+  return blogPath ? [{ params: { blog: blogPath.path } }] : [];
 };
 
 const allWritings = (await getCollection("blog")).sort(

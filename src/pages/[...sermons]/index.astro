@@ -7,6 +7,8 @@ import {
   getAllSeriesData,
   getAllSermonData,
 } from "@/lib/posts";
+
+import { sermonsPath } from "@/lib/nav";
 import SpotifyEmbed from "@/components/SpotifyEmbed";
 import Filter from "@/components/Filters/Filter";
 import { CardDisplay } from "@/components/Cards/CardDisplay";
@@ -25,9 +27,14 @@ const latestSermonDateFormatted = datefnsFormat(
   ),
   "LLL dd, yyyy",
 );
+
+// Get static paths
+export const getStaticPaths = () => {
+  return sermonsPath ? [{ params: { sermons: sermonsPath.path } }] : [];
+};
 ---
 
-<BaseLayout pageTitle="Sermons">
+<BaseLayout pageTitle={sermonsPath?.label || "Sermons"}>
   <main class="layout-base gap-8 py-8">
     <h1 class="sr-only">Sermons</h1>
     <section class="flex flex-col gap-4">
@@ -63,7 +70,11 @@ const latestSermonDateFormatted = datefnsFormat(
         {allPreachersData}
         client:only="react"
       />
-      <CardDisplay data={allSermonData} baseUrl="sermons" client:load />
+      <CardDisplay
+        data={allSermonData}
+        baseUrl={sermonsPath!.path}
+        client:load
+      />
     </section>
   </main>
 </BaseLayout>

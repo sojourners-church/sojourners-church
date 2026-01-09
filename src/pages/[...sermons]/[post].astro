@@ -1,21 +1,30 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-
-import { render } from "astro:content";
 import { StyledText } from "@/components/StyledText";
-import { getAllSermonData } from "@/lib/posts";
 import SpotifyEmbed from "@/components/SpotifyEmbed";
 import Meta from "@/components/Meta";
 import { format as datefnsFormat } from "date-fns";
 
-export async function getStaticPaths() {
-  const pages = await getAllSermonData();
+import { getCollection, render } from "astro:content";
 
-  return pages.map((page) => ({
-    params: { slug: page.id },
-    props: { page },
-  }));
-}
+import { sermonsPath } from "@/lib/nav";
+
+import type { GetStaticPaths } from "astro";
+import { getAllSermonData } from "@/lib/posts";
+
+// Get static paths
+export const getStaticPaths = (async () => {
+  return sermonsPath
+    ? (await getAllSermonData()).map((page) => ({
+        params: {
+          post: `${sermonsPath?.path}/${page.id}`,
+        },
+        props: {
+          page,
+        },
+      }))
+    : [];
+}) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
 const {
@@ -28,12 +37,12 @@ const {
   },
 } = page;
 
-const { Content } = await render(page);
-
 const dateFormatted = datefnsFormat(
   new Date(date.valueOf() + date.getTimezoneOffset() * 60 * 1000),
   "LLL dd, yyyy",
 );
+
+const { Content } = await render(page);
 ---
 
 <BaseLayout pageTitle={page.data.title}>

@@ -63,3 +63,4 @@ const findPathByType = (
 
 export const eventsPath = findPathByType(config.header.menu, "Events");
 export const blogPath = findPathByType(config.header.menu, "Blog");
+export const sermonsPath = findPathByType(config.header.menu, "Sermons");

@@ -14,7 +14,7 @@ export const getStaticPaths = (async () => {
   return blogPath
     ? (await getCollection("blog")).map((page) => ({
         params: {
-          blogPost: `${blogPath?.path}/${page.id}`,
+          post: `${blogPath?.path}/${page.id}`,
         },
         props: {
           page,
