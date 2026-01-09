@@ -1,14 +1,15 @@
+import type { APIRoute } from "astro";
+import { Resend } from "resend";
+import * as z from "zod";
+
+import { subscribeFormSchema } from "@/components/SubscribeForm/schema";
+
 // TODO: Better error handling
 
 export const prerender = false;
-import type { APIRoute } from "astro";
-import * as z from "zod";
-import { subscribeFormSchema } from "@/components/SubscribeForm/schema";
 
-const { RESEND_SEGMENT_ID, RESEND_API_KEY } = import.meta.env;
-
-// RESEND
-import { Resend } from "resend";
+const RESEND_SEGMENT_ID = import.meta.env.RESEND_SEGMENT_ID;
+const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
 
 const resend = new Resend(RESEND_API_KEY);
 
