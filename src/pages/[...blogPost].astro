@@ -1,23 +1,33 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-
-import Meta from "@/components/Meta";
-import MarkdownContentWrapper from "@/components/MarkdownContentWrapper.astro";
-
-import { StyledText } from "@/components/StyledText";
 import { getCollection, render } from "astro:content";
 
-export async function getStaticPaths() {
-  const pages = await getCollection("writings");
-  return pages.map((page) => ({
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Meta from "@/components/Meta";
+import MarkdownContentWrapper from "@/components/MarkdownContentWrapper.astro";
+import { StyledText } from "@/components/StyledText";
+import config from "@/_site-config.json";
+
+import type { GetStaticPaths } from "astro";
+
+// Destructure needed values
+const { useBlog } = config.general.blog;
+
+// Prevent manually visiting the path if option set to false
+if (!useBlog) {
+  return Astro.redirect("/404");
+}
+
+// Get static paths
+export const getStaticPaths = (async () => {
+  return (await getCollection("writings")).map((page) => ({
     params: {
-      slug: page.id,
+      blogPost: `${config.general.blog.blogPath}/${page.id}`,
     },
     props: {
       page,
     },
   }));
-}
+}) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
 const { Content } = await render(page);

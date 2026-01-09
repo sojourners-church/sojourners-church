@@ -1,5 +1,6 @@
 import * as React from "react";
 import { CardCustom } from "./CardCustom";
+import config from "@/_site-config.json";
 import {
   isSermonCollection,
   isWritingsCollection,
@@ -28,6 +29,7 @@ const CardDisplay: React.FC<CardDisplayProps> = ({ data }) => {
     $allWritingsData.set(data);
     filteredPosts = useStore($filteredWritings);
     baseUrl = "/writings/";
+    baseUrl = `/${config.general.blog.blogPath}/`;
   }
 
   return (

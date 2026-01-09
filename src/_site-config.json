@@ -1,17 +1,19 @@
 {
   "general": {
     "name": "Astro Church",
-    "youtube": "https://www.youtube.com/@CodinginPublic"
-  },
-  "header": {
+    "youtube": "https://www.youtube.com/@CodinginPublic",
     "events": {
       "useEvents": true,
+      "eventsLabel": "Calendar",
       "eventsPath": "life-together/calendar"
     },
     "blog": {
       "useBlog": true,
-      "blogPath": "writings"
-    },
+      "blogLabel": "Blog",
+      "blogPath": "blog"
+    }
+  },
+  "header": {
     "menu": [
       {
         "title": "About Us",
@@ -48,7 +50,7 @@
         "title": "Sermons"
       },
       {
-        "title": "Writings"
+        "title": "Blog"
       }
     ]
   },
