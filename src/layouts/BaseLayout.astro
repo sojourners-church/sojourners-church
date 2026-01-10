@@ -48,14 +48,10 @@ const metaTitle = `${config.general.name}${pageTitle ? ` | ${pageTitle}` : ""}`;
     </noscript>
 
     <!-- GLOBAL STYLES FIRST -->
-    <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="stylesheet" href="/public/styles/global.css" />
 
     <!-- THEME STYLES -->
-    {
-      config.theme?.customCSS && (
-        <style is:inline set:html={config.theme.customCSS} />
-      )
-    }
+    {config.theme && <style is:inline set:html={config.theme.customCSS} />}
 
     <!-- CRITICAL CSS (ABOVE-THE-FOLD) -->
     <style>
