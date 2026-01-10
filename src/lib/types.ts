@@ -1,66 +1,71 @@
 import type { DateValue } from "@internationalized/date";
-import type { CollectionEntry } from "astro:content";
+import type { CollectionEntry as AstroCollectionEntry } from "astro:content";
 
-export type BlogData = CollectionEntry<"blog">;
-export type SeriesData = CollectionEntry<"series">;
-export type PreacherData = CollectionEntry<"preachers">;
-export interface SermonData extends CollectionEntry<"sermons"> {
+export type BlogData = AstroCollectionEntry<"blog">;
+export type SeriesData = AstroCollectionEntry<"series">;
+export type PreacherData = AstroCollectionEntry<"preachers">;
+export interface SermonData extends AstroCollectionEntry<"sermons"> {
   series: SeriesData;
   preacher: PreacherData;
 }
 
+export type CollectionArray =
+  | SeriesData[]
+  | PreacherData[]
+  | SermonData[]
+  | BlogData[]
+  | string[];
+
+export type CollectionEntry =
+  | SeriesData
+  | PreacherData
+  | SermonData
+  | BlogData
+  | string;
+
 // Helper functions for type narrowing
 export const isSeriesCollection = (
-  data: SeriesData[] | PreacherData[] | SermonData[] | BlogData[] | string[],
+  data: CollectionArray,
 ): data is SeriesData[] => {
-  return (data[0] as SeriesData).collection === "series";
-};
-
-export const isSeries = (
-  data: SeriesData | PreacherData | SermonData | BlogData | string,
-): data is SeriesData => {
-  return (data as SeriesData).collection === "series";
+  return data.length > 0 && (data[0] as SeriesData).collection === "series";
 };
 
 export const isPreacherCollection = (
-  data: SeriesData[] | PreacherData[] | SermonData[] | BlogData[] | string[],
+  data: CollectionArray,
 ): data is PreacherData[] => {
-  return (data[0] as PreacherData).collection === "preachers";
+  return (
+    data.length > 0 && (data[0] as PreacherData).collection === "preachers"
+  );
 };
 
 export const isSermonCollection = (
-  data: SeriesData[] | PreacherData[] | SermonData[] | BlogData[] | string[],
+  data: CollectionArray,
 ): data is SermonData[] => {
-  return (data[0] as SermonData).collection === "sermons";
+  return data.length > 0 && (data[0] as SermonData).collection === "sermons";
 };
 
-export const isSermon = (
-  data: SeriesData | PreacherData | SermonData | BlogData | string,
-): data is SermonData => {
-  return (data as SermonData).collection === "sermons";
+export const isSermon = (data: CollectionEntry): data is SermonData => {
+  return (
+    typeof data === "object" &&
+    data !== null &&
+    (data as SermonData).collection === "sermons"
+  );
 };
 
-export const isWritingsCollection = (
-  data: SeriesData[] | PreacherData[] | SermonData[] | BlogData[] | string[],
-): data is BlogData[] => {
-  return (data[0] as BlogData).collection === "blog";
+export const isBlogCollection = (data: CollectionArray): data is BlogData[] => {
+  return data.length > 0 && (data[0] as BlogData).collection === "blog";
 };
 
-export const isWriting = (
-  data: SeriesData | PreacherData | SermonData | BlogData | string,
-): data is BlogData => {
-  return (data as BlogData).collection === "blog";
+export const isBlog = (data: CollectionEntry): data is BlogData => {
+  return (
+    typeof data === "object" &&
+    data !== null &&
+    (data as BlogData).collection === "blog"
+  );
 };
 
-export const isStringArray = (
-  data: SeriesData[] | PreacherData[] | SermonData[] | BlogData[] | string[],
-): data is string[] => {
-  return typeof data[0] === "string";
-};
-
-type HasTitle = { title: string };
-export const hasTitle = (value: unknown): value is HasTitle => {
-  return typeof value === "object" && value !== null && "title" in value;
+export const isStringArray = (data: CollectionArray): data is string[] => {
+  return data.length > 0 && typeof data[0] === "string";
 };
 
 // Spotify Types

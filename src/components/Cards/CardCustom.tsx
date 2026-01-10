@@ -2,12 +2,7 @@ import * as React from "react";
 
 import Meta from "@/components/Meta";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  type BlogData,
-  type SermonData,
-  isSermon,
-  isWriting,
-} from "@/lib/types";
+import { type BlogData, type SermonData, isBlog, isSermon } from "@/lib/types";
 
 import { StyledText } from "../StyledText";
 
@@ -53,7 +48,7 @@ const CardCustom: React.FC<CardCustomProps> = ({
                   : undefined
               }
               tags={
-                isWriting(inputData) && inputData.data.tags
+                isBlog(inputData) && inputData.data.tags
                   ? inputData.data.tags
                   : undefined
               }

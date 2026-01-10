@@ -6,8 +6,8 @@ import { $allSermonData, $filteredSermons } from "@/lib/nanostoreSermons";
 import {
   type BlogData,
   type SermonData,
+  isBlogCollection,
   isSermonCollection,
-  isWritingsCollection,
 } from "@/lib/types";
 
 import { CardCustom } from "./CardCustom";
@@ -25,7 +25,7 @@ const CardDisplay: React.FC<CardDisplayProps> = ({ data, baseUrl }) => {
     filteredPosts = useStore($filteredSermons);
   }
 
-  if (isWritingsCollection(data)) {
+  if (isBlogCollection(data)) {
     $allBlogData.set(data);
     filteredPosts = useStore($filteredBlog);
   }

@@ -1,19 +1,8 @@
 import { getCollection, getEntry } from "astro:content";
-import type { SermonData } from "./types";
-import { type CollectionEntry } from "astro:content";
 
-// TODO: Update getAllSermonData w/ this function
-export const getSermonItemData = async (
-  sermonItem: CollectionEntry<"sermons">,
-) => {
-  return {
-    ...sermonItem,
-    series: await getEntry(sermonItem.data.series),
-    preacher: await getEntry(sermonItem.data.preacher),
-  };
-};
+import type { SermonData } from "@/lib/types";
 
-export async function getAllSermonData(): Promise<SermonData[]> {
+export const getAllSermonData = async (): Promise<SermonData[]> => {
   const allSermons = (await getCollection("sermons")).sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
   );
@@ -27,17 +16,15 @@ export async function getAllSermonData(): Promise<SermonData[]> {
   });
 
   return Promise.all(promises);
-}
+};
 
-export const allSermonData = await getAllSermonData();
-
-export async function getAllSeriesData() {
+export const getAllSeriesData = async () => {
   return (await getCollection("series")).sort(
     (a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf(),
   );
-}
+};
 
-export async function getAllPreachersData() {
+export const getAllPreachersData = async () => {
   return (
     (await getCollection("preachers"))
       // alpha sort by last name
@@ -53,4 +40,4 @@ export async function getAllPreachersData() {
       // Prioritize non-guest preachers
       .sort((a, b) => Number(a.data.isGuest) - Number(b.data.isGuest))
   );
-}
+};

@@ -15,9 +15,6 @@ import {
 import { isDateValue } from "@/lib/types";
 
 type FilterKey = string;
-// type FilterKey =
-//   | keyof SermonFilterParamsValue
-//   | keyof BlogFilterParamsValue;
 
 const normalize = <T>(value: T | null | undefined) =>
   value === "" || value === null ? undefined : value;
@@ -28,7 +25,7 @@ const normalize = <T>(value: T | null | undefined) =>
  */
 export const useNanostoreURLSync = <T = any>(key: FilterKey) => {
   const isSermonKey = isSermonFilterKey(key as string);
-  const isWritingKey = isBlogFilterKey(key as string);
+  const isBlogKey = isBlogFilterKey(key as string);
 
   const store = isSermonKey ? $sermonFilterParams : $blogFilterParams;
   const storeValueRaw = useStore(store);
@@ -38,7 +35,7 @@ export const useNanostoreURLSync = <T = any>(key: FilterKey) => {
   if (isSermonKey) {
     const sermonStore = storeValueRaw as SermonFilterParamsValue;
     storeValue = sermonStore[key as keyof SermonFilterParamsValue];
-  } else if (isWritingKey) {
+  } else if (isBlogKey) {
     const blogStore = storeValueRaw as BlogFilterParamsValue;
     storeValue = blogStore[key as keyof BlogFilterParamsValue];
   }
@@ -51,7 +48,7 @@ export const useNanostoreURLSync = <T = any>(key: FilterKey) => {
         key as keyof SermonFilterParamsValue,
         normalized as any,
       );
-    } else if (isWritingKey && !isDateValue(normalized)) {
+    } else if (isBlogKey && !isDateValue(normalized)) {
       $blogFilterParams.setKey(
         key as keyof BlogFilterParamsValue,
         normalized as any,

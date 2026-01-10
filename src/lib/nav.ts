@@ -42,23 +42,33 @@ const findPathByType = (
   menuItemsArray: ConfigMenuItem[],
   targetType: string,
 ): DynamicPath | undefined => {
+  const results: DynamicPath[] = [];
+
   for (const menuItem of menuItemsArray) {
     if (menuItem.type === targetType) {
-      return {
+      results.push({
         label: menuItem.title,
-        path: slugify(menuItem.title).toLowerCase(),
-      };
+        path: slugify(menuItem.title, { lower: true, strict: true }),
+      });
     }
     if (menuItem.subMenu && Array.isArray(menuItem.subMenu)) {
-      const subMenuItem = findPathByType(menuItem.subMenu, targetType);
-      if (subMenuItem) {
-        return {
-          label: subMenuItem.label,
-          path: `${slugify(menuItem.title).toLowerCase()}/${subMenuItem.path}`,
-        };
+      const subMenuItems = findPathByType(menuItem.subMenu, targetType);
+      if (subMenuItems) {
+        results.push({
+          label: subMenuItems.label,
+          path: `${slugify(menuItem.title, { lower: true, strict: true })}/${subMenuItems.path}`,
+        });
       }
     }
   }
+
+  if (results.length > 1) {
+    throw new Error(
+      `Max one menu item with type "${targetType}" allowed! Found ${results.length} in configuration.`,
+    );
+  }
+
+  return results[0];
 };
 
 export const eventsPath = findPathByType(config.header.menu, "Events");
