@@ -370,5 +370,5 @@ content:
           - name: tweakcn
             label: TweakCN Theme
             type: code
-            options: { language: html }
+            options: { language: css }
             description: Select or create a theme at https://tweakcn.com/ and copy/paste it here.
