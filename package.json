@@ -1,12 +1,12 @@
 {
-  "name": "sojourners-church-react",
+  "name": "astro-church",
   "version": "0.0.1",
   "type": "module",
   "scripts": {
     "astro": "astro",
-    "prebuild": "node scripts/generate-css.js",
+    "prebuild": "node scripts/generate-theme-css.js",
     "build": "astro build",
-    "predev": "node scripts/generate-css.js",
+    "predev": "node scripts/generate-theme-css.js",
     "dev": "astro dev",
     "knip": "knip",
     "preview": "astro preview"
