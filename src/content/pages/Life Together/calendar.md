@@ -1,4 +1,0 @@
----
-title: Calendar
-type: Events
----
