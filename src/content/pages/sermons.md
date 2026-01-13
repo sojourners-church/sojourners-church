@@ -1,4 +1,0 @@
----
-title: Sermons
-type: Sermons
----
