@@ -207,8 +207,8 @@ content:
       fields: [title]
       primary: title
     fields:
-      - { name: title, label: Title, type: string, required: true }
-      - { name: body, label: Body, type: rich-text }
+      - { name: title, label: Title, type: string, required: true, description: Ensure title exactly matches title in menu configuration under Site Config. }
+      - { name: body, label: Body, type: rich-text, required: true }
 
   - name: config
     label: Site Config
