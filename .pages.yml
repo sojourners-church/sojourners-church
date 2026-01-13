@@ -217,7 +217,7 @@ content:
         description: Ensure you only select each item ONCE in the whole menu
         options:
           values: [Blog, Events, Sermons]
-      - { name: body, label: Body, type: rich-text, required: true }
+      - { name: body, label: Body, type: rich-text }
 
   - name: config
     label: Site Config
