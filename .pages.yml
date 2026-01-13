@@ -204,27 +204,10 @@ content:
     path: src/content/pages
     filename: "{primary}.md"
     view:
-      fields: [title, order]
+      fields: [title]
       primary: title
-      sort: [order, title]
-      default:
-        sort: order
-        order: asc
     fields:
       - { name: title, label: Title, type: string, required: true }
-      - {
-          name: description,
-          label: Description,
-          type: string,
-          options: { maxlength: 180 },
-        }
-      - { name: order, label: Order, type: number }
-      - name: type
-        label: Type
-        type: select
-        description: Ensure you only select each item ONCE in the whole menu
-        options:
-            values: [Blog, Events, Sermons]
       - { name: body, label: Body, type: rich-text }
 
   - name: config
