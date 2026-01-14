@@ -9,14 +9,14 @@ export interface SermonData extends AstroCollectionEntry<"sermons"> {
   preacher: PreacherData;
 }
 
-export type CollectionArray =
+type CollectionArray =
   | SeriesData[]
   | PreacherData[]
   | SermonData[]
   | BlogData[]
   | string[];
 
-export type CollectionEntry =
+type CollectionEntry =
   | SeriesData
   | PreacherData
   | SermonData
@@ -111,4 +111,15 @@ export const isDateValue = (value: unknown): value is DateValue => {
     "month" in value &&
     "day" in value
   );
+};
+
+export type DynamicPath = {
+  label: string;
+  path: string;
+};
+
+export type Paths = {
+  blog: DynamicPath | undefined;
+  sermons: DynamicPath | undefined;
+  events: DynamicPath | undefined;
 };

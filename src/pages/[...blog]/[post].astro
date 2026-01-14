@@ -5,16 +5,16 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Meta from "@/components/Meta";
 import MarkdownContentWrapper from "@/components/MarkdownContentWrapper.astro";
 import { StyledText } from "@/components/StyledText";
-import { blogPath } from "@/lib/getMenuItems";
+import { paths } from "@/lib/getMenuItems";
 
 import type { GetStaticPaths } from "astro";
 
 // Get static paths
 export const getStaticPaths = (async () => {
-  return blogPath
+  return paths.blog?.path
     ? (await getCollection("blog")).map((page) => ({
         params: {
-          post: `${blogPath?.path}/${page.id}`,
+          post: `${paths.blog?.path}/${page.id}`,
         },
         props: {
           page,
@@ -34,7 +34,7 @@ const { Content } = await render(page);
         <StyledText as="h2" variant="displayLG">
           {page.data.title}
         </StyledText>
-        <Meta tags={page.data.tags} linked client:load />
+        <Meta tags={page.data.tags} {paths} linked client:load />
       </Fragment>
       <Content slot="content" />
     </MarkdownContentWrapper>

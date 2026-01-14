@@ -1,14 +1,14 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Calendar from "@/components/Calendar";
-import { eventsPath } from "@/lib/getMenuItems";
+import { paths } from "@/lib/getMenuItems";
 
 export const getStaticPaths = () => {
-  return eventsPath
+  return paths.events?.path
     ? [
         {
           params: {
-            events: eventsPath.path,
+            events: paths.events.path,
           },
         },
       ]
@@ -16,7 +16,7 @@ export const getStaticPaths = () => {
 };
 ---
 
-<BaseLayout pageTitle={eventsPath?.label || "Events"}>
+<BaseLayout pageTitle={paths.events?.label || "Events"}>
   <main class="layout-base py-8">
     <div>
       <Calendar client:load />

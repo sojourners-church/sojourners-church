@@ -6,6 +6,7 @@ import slugify from "slugify";
 
 import { Badge } from "@/components/ui/badge";
 import useIsMobile from "@/lib/hooks/useIsMobile";
+import type { Paths } from "@/lib/types";
 
 interface MetaProps {
   date?: Date;
@@ -16,27 +17,8 @@ interface MetaProps {
   variant?: "muted" | "outline";
   compact?: boolean;
   linked?: boolean;
+  paths: Paths;
 }
-
-type DynamicPath = {
-  label: string;
-  path: string;
-};
-
-type Paths = {
-  blog: DynamicPath;
-  sermons: DynamicPath;
-  events: DynamicPath;
-};
-
-const getPaths = async (): Promise<Paths> => {
-  const res = await fetch(
-    `${import.meta.env.DEV ? "http://localhost:4321" : import.meta.env.SITE}/api/Paths.json`,
-  );
-  const data = await res.json();
-
-  return data;
-};
 
 const Meta: React.FC<MetaProps> = ({
   date,
@@ -47,15 +29,9 @@ const Meta: React.FC<MetaProps> = ({
   variant = "muted",
   compact = undefined,
   linked = false,
+  paths,
 }) => {
   const isCompact = compact ?? useIsMobile();
-  const [paths, setPaths] = React.useState<Paths | null>(null);
-
-  React.useEffect(() => {
-    getPaths().then(setPaths);
-  }, []);
-
-  if (!paths) return null;
 
   const formattedDate =
     date &&
@@ -75,9 +51,9 @@ const Meta: React.FC<MetaProps> = ({
 
   if (preacher)
     metaItems.push(
-      linked ? (
+      linked && paths.sermons ? (
         <a
-          href={`/${paths?.sermons.path}/?preacher=${slugify(preacher, { strict: true }).toLowerCase()}`}
+          href={`/${paths.sermons.path}/?preacher=${slugify(preacher, { strict: true }).toLowerCase()}`}
         >
           {preacher}
         </a>
@@ -88,7 +64,7 @@ const Meta: React.FC<MetaProps> = ({
 
   if (series)
     metaItems.push(
-      linked ? (
+      linked && paths.sermons ? (
         <a
           href={`/${paths?.sermons.path}/?series=${slugify(series, { strict: true }).toLowerCase()}`}
         >
@@ -102,7 +78,7 @@ const Meta: React.FC<MetaProps> = ({
   if (tags)
     tags.forEach((tag) =>
       metaItems.push(
-        linked ? (
+        linked && paths.blog ? (
           <a
             href={`/${paths?.blog.path}/?tag=${tag}`}
             className="not-prose"

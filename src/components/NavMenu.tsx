@@ -17,28 +17,10 @@ interface MenuItem {
   submenu: MenuItem[];
 }
 
-const getMenu = async () => {
-  const res = await fetch(
-    `${import.meta.env.DEV ? "http://localhost:4321" : import.meta.env.SITE}/api/Nav.json`,
-  );
-  const data = await res.json();
-
-  return data;
-};
-
-const NavMenu: React.FC<React.ComponentProps<"nav">> = ({ ...props }) => {
-  const [menu, setMenu] = React.useState<MenuItem[] | null>(null);
-
-  React.useEffect(() => {
-    getMenu().then((data) => {
-      setMenu(data);
-    });
-  }, []);
-
-  if (!menu) {
-    return <nav {...props}>Loading...</nav>;
-  }
-
+const NavMenu: React.FC<React.ComponentProps<"nav"> & { menu: MenuItem[] }> = ({
+  menu,
+  ...props
+}) => {
   return (
     <nav {...props}>
       {menu.map(({ label, submenu, path }) =>

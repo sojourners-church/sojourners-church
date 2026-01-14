@@ -1,6 +1,7 @@
 import { useStore } from "@nanostores/react";
 import * as React from "react";
 
+import { CardCustom } from "@/components/Cards/CardCustom";
 import { $allBlogData, $filteredBlog } from "@/lib/nanostoreBlog";
 import { $allSermonData, $filteredSermons } from "@/lib/nanostoreSermons";
 import {
@@ -9,15 +10,14 @@ import {
   isBlogCollection,
   isSermonCollection,
 } from "@/lib/types";
-
-import { CardCustom } from "./CardCustom";
+import type { Paths } from "@/lib/types";
 
 interface CardDisplayProps {
   data: SermonData[] | BlogData[];
-  baseUrl: string;
+  paths: Paths;
 }
 
-const CardDisplay: React.FC<CardDisplayProps> = ({ data, baseUrl }) => {
+const CardDisplay: React.FC<CardDisplayProps> = ({ data, paths }) => {
   let filteredPosts;
 
   if (isSermonCollection(data)) {
@@ -33,7 +33,7 @@ const CardDisplay: React.FC<CardDisplayProps> = ({ data, baseUrl }) => {
   return (
     <div className="flex flex-col gap-8 pt-8 lg:grid lg:grid-cols-2">
       {filteredPosts?.map((item) => (
-        <CardCustom key={item.id} baseUrl={baseUrl} data={item} />
+        <CardCustom key={item.id} data={item} paths={paths} />
       ))}
     </div>
   );

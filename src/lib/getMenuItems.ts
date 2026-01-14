@@ -174,6 +174,8 @@ const findPathByType = (
 
 export const menu = await getMenuItems();
 
-export const eventsPath = findPathByType(menu, "Events");
-export const blogPath = findPathByType(menu, "Blog");
-export const sermonsPath = findPathByType(menu, "Sermons");
+export const paths = {
+  blog: findPathByType(menu, "Blog"),
+  events: findPathByType(menu, "Events"),
+  sermons: findPathByType(menu, "Sermons"),
+};

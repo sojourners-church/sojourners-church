@@ -1,6 +1,7 @@
 import { Spin as Hamburger } from "hamburger-react";
 import * as React from "react";
 
+import { ButtonLink } from "@/components/ButtonLink";
 import {
   Drawer,
   DrawerContent,
@@ -10,8 +11,6 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 
-import { ButtonLink } from "./ButtonLink.tsx";
-
 interface MenuItem {
   path: string;
   label: string;
@@ -20,29 +19,8 @@ interface MenuItem {
   submenu: MenuItem[];
 }
 
-const getMenu = async () => {
-  const res = await fetch(
-    `${import.meta.env.DEV ? "http://localhost:4321" : import.meta.env.SITE}/api/Nav.json`,
-  );
-  const data = await res.json();
-
-  return data;
-};
-
-const Sidebar = () => {
+const Sidebar: React.FC<{ menu: MenuItem[] }> = ({ menu }) => {
   const [isOpen, setIsOpen] = React.useState(false);
-
-  const [menu, setMenu] = React.useState<MenuItem[] | null>(null);
-
-  React.useEffect(() => {
-    getMenu().then((data) => {
-      setMenu(data);
-    });
-  }, []);
-
-  if (!menu) {
-    return <></>;
-  }
 
   return (
     <>

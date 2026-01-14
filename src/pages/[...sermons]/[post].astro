@@ -7,17 +7,17 @@ import { format as datefnsFormat } from "date-fns";
 
 import { render } from "astro:content";
 
-import { sermonsPath } from "@/lib/getMenuItems";
+import { paths } from "@/lib/getMenuItems";
 
 import type { GetStaticPaths } from "astro";
 import { getAllSermonData } from "@/lib/posts";
 
 // Get static paths
 export const getStaticPaths = (async () => {
-  return sermonsPath
+  return paths.sermons?.path
     ? (await getAllSermonData()).map((page) => ({
         params: {
-          post: `${sermonsPath?.path}/${page.id}`,
+          post: `${paths.sermons?.path}/${page.id}`,
         },
         props: {
           page,
@@ -56,6 +56,7 @@ const { Content } = await render(page);
         {series}
         compact={false}
         linked
+        {paths}
         client:load
       />
     </div>

@@ -6,6 +6,8 @@ import { StyledText } from "@/components/StyledText";
 import config from "@/_site-config.json";
 const { header, general } = config;
 
+import { menu } from "@/lib/getMenuItems";
+
 import { Image } from "astro:assets";
 import { type ImageMetadata } from "astro";
 const logoImage = import.meta.glob<{ default: ImageMetadata }>(`src/assets/*`);
@@ -36,9 +38,10 @@ const currentPath = Astro.url.pathname;
 
     <NavMenu
       className="hidden gap-2 lg:inline-flex items-center flex-wrap"
+      menu={menu}
       client:load
     />
 
-    <Sidebar client:load />
+    <Sidebar menu={menu} client:load />
   </div>
 </header>

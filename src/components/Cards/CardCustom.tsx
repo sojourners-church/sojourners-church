@@ -1,30 +1,41 @@
 import * as React from "react";
 
 import Meta from "@/components/Meta";
+import { StyledText } from "@/components/StyledText";
 import { Card, CardContent } from "@/components/ui/card";
-import { type BlogData, type SermonData, isBlog, isSermon } from "@/lib/types";
-
-import { StyledText } from "../StyledText";
+import {
+  type BlogData,
+  type SermonData,
+  isBlog as isBlogTypeGuard,
+  isSermon as isSermonTypeGuard,
+} from "@/lib/types";
+import type { Paths } from "@/lib/types";
 
 interface CardCustomProps {
-  baseUrl: string;
   data: SermonData | BlogData;
+  paths: Paths;
 }
 
-const CardCustom: React.FC<CardCustomProps> = ({
-  baseUrl,
-  data: inputData,
-}) => {
+const CardCustom: React.FC<CardCustomProps> = ({ data: inputData, paths }) => {
   const {
     id,
     data: { title, date },
   } = inputData;
 
+  const isSermon = isSermonTypeGuard(inputData);
+  const isBlog = isBlogTypeGuard(inputData);
+
+  const baseUrl = isSermon
+    ? paths["sermons"]?.path
+    : isBlog
+      ? paths["blog"]?.path
+      : "";
+
   return (
     <Card className="bg-muted rounded-sm border-none py-0 shadow-sm">
       <CardContent className="flex flex-row p-0">
         <a href={`${baseUrl}/${id}`} className="flex max-h-48 w-full flex-row">
-          {isSermon(inputData) && (
+          {isSermon && (
             <img
               src={inputData.series.data.imageSquare}
               alt="series"
@@ -38,21 +49,20 @@ const CardCustom: React.FC<CardCustomProps> = ({
             <Meta
               date={date}
               scripture={
-                isSermon(inputData) && inputData.data.scripture
+                isSermon && inputData.data.scripture
                   ? inputData.data.scripture
                   : undefined
               }
               preacher={
-                isSermon(inputData) && inputData.preacher.data.name
+                isSermon && inputData.preacher.data.name
                   ? inputData.preacher.data.name
                   : undefined
               }
               tags={
-                isBlog(inputData) && inputData.data.tags
-                  ? inputData.data.tags
-                  : undefined
+                isBlog && inputData.data.tags ? inputData.data.tags : undefined
               }
               variant="outline"
+              paths={paths}
             />
           </div>
         </a>
