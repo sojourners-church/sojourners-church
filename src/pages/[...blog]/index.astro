@@ -2,7 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Filter from "@/components/Filters/Filter";
 import { CardDisplay } from "@/components/Cards/CardDisplay";
-import { blogPath } from "@/lib/nav";
+import { blogPath } from "@/lib/getMenuItems";
 
 import { getCollection } from "astro:content";
 
@@ -11,12 +11,12 @@ export const getStaticPaths = () => {
   return blogPath ? [{ params: { blog: blogPath.path } }] : [];
 };
 
-const allWritings = (await getCollection("blog")).sort(
+const allBlog = (await getCollection("blog")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 
 const getTags = () => {
-  const postsWithTags = allWritings.filter((i) => i.data.tags);
+  const postsWithTags = allBlog.filter((i) => i.data.tags);
   let tagSet = new Set<string>();
 
   if (postsWithTags.length > 0) {
@@ -34,8 +34,8 @@ const getTags = () => {
     <BaseLayout pageTitle={blogPath.label || "Blog"}>
       <main class="layout-base gap-8 py-8">
         <section class="flex flex-col gap-2">
-          <Filter {allWritings} allTags={getTags()} client:only="react" />
-          <CardDisplay data={allWritings} baseUrl={blogPath.path} client:load />
+          <Filter {allBlog} allTags={getTags()} client:only="react" />
+          <CardDisplay data={allBlog} baseUrl={blogPath.path} client:load />
         </section>
       </main>
     </BaseLayout>

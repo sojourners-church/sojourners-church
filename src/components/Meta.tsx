@@ -6,7 +6,6 @@ import slugify from "slugify";
 
 import { Badge } from "@/components/ui/badge";
 import useIsMobile from "@/lib/hooks/useIsMobile";
-import { blogPath } from "@/lib/nav";
 
 interface MetaProps {
   date?: Date;
@@ -19,6 +18,26 @@ interface MetaProps {
   linked?: boolean;
 }
 
+type DynamicPath = {
+  label: string;
+  path: string;
+};
+
+type Paths = {
+  blog: DynamicPath;
+  sermons: DynamicPath;
+  events: DynamicPath;
+};
+
+const getPaths = async (): Promise<Paths> => {
+  const res = await fetch(
+    `${import.meta.env.DEV ? "http://localhost:4321" : import.meta.env.SITE}/api/Paths.json`,
+  );
+  const data = await res.json();
+
+  return data;
+};
+
 const Meta: React.FC<MetaProps> = ({
   date,
   scripture,
@@ -30,6 +49,13 @@ const Meta: React.FC<MetaProps> = ({
   linked = false,
 }) => {
   const isCompact = compact ?? useIsMobile();
+  const [paths, setPaths] = React.useState<Paths | null>(null);
+
+  React.useEffect(() => {
+    getPaths().then(setPaths);
+  }, []);
+
+  if (!paths) return null;
 
   const formattedDate =
     date &&
@@ -51,7 +77,7 @@ const Meta: React.FC<MetaProps> = ({
     metaItems.push(
       linked ? (
         <a
-          href={`/sermons/?preacher=${slugify(preacher, { strict: true }).toLowerCase()}`}
+          href={`/${paths?.sermons.path}/?preacher=${slugify(preacher, { strict: true }).toLowerCase()}`}
         >
           {preacher}
         </a>
@@ -64,7 +90,7 @@ const Meta: React.FC<MetaProps> = ({
     metaItems.push(
       linked ? (
         <a
-          href={`/sermons/?series=${slugify(series, { strict: true }).toLowerCase()}`}
+          href={`/${paths?.sermons.path}/?series=${slugify(series, { strict: true }).toLowerCase()}`}
         >
           {series}
         </a>
@@ -78,7 +104,7 @@ const Meta: React.FC<MetaProps> = ({
       metaItems.push(
         linked ? (
           <a
-            href={`/${blogPath?.path}/?tag=${tag}`}
+            href={`/${paths?.blog.path}/?tag=${tag}`}
             className="not-prose"
             key={tag}
           >

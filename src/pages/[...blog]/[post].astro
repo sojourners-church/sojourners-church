@@ -5,7 +5,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Meta from "@/components/Meta";
 import MarkdownContentWrapper from "@/components/MarkdownContentWrapper.astro";
 import { StyledText } from "@/components/StyledText";
-import { blogPath } from "@/lib/nav";
+import { blogPath } from "@/lib/getMenuItems";
 
 import type { GetStaticPaths } from "astro";
 
@@ -34,7 +34,7 @@ const { Content } = await render(page);
         <StyledText as="h2" variant="displayLG">
           {page.data.title}
         </StyledText>
-        <Meta tags={page.data.tags} linked />
+        <Meta tags={page.data.tags} linked client:load />
       </Fragment>
       <Content slot="content" />
     </MarkdownContentWrapper>

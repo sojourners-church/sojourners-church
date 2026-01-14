@@ -5,7 +5,9 @@ import MarkdownContentWrapper from "@/components/MarkdownContentWrapper.astro";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const pages = await getCollection("pages");
+  const pages = await getCollection("pages", ({ data }) => {
+    return data.type === undefined;
+  });
   return pages.map((page) => ({
     params: { pages: page.id },
     props: { page },

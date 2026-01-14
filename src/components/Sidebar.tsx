@@ -1,18 +1,48 @@
-import * as React from "react";
 import { Spin as Hamburger } from "hamburger-react";
+import * as React from "react";
+
 import {
   Drawer,
   DrawerContent,
+  DrawerDescription,
   DrawerOverlay,
   DrawerTitle,
   DrawerTrigger,
-  DrawerDescription,
 } from "@/components/ui/drawer";
-import { navEntries } from "@/lib/nav.ts";
+
 import { ButtonLink } from "./ButtonLink.tsx";
+
+interface MenuItem {
+  path: string;
+  label: string;
+  order: number;
+  type: string | null;
+  submenu: MenuItem[];
+}
+
+const getMenu = async () => {
+  const res = await fetch(
+    `${import.meta.env.DEV ? "http://localhost:4321" : import.meta.env.SITE}/api/Nav.json`,
+  );
+  const data = await res.json();
+
+  return data;
+};
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const [menu, setMenu] = React.useState<MenuItem[] | null>(null);
+
+  React.useEffect(() => {
+    getMenu().then((data) => {
+      setMenu(data);
+    });
+  }, []);
+
+  if (!menu) {
+    return <></>;
+  }
 
   return (
     <>
@@ -36,8 +66,8 @@ const Sidebar = () => {
             </DrawerDescription>
             <nav className="flex flex-col items-center px-4">
               <ul className="flex flex-col gap-4">
-                {navEntries.map(({ label, path, subMenu }, index) =>
-                  subMenu ? (
+                {menu.map(({ label, path, submenu }, index) =>
+                  submenu.length > 0 ? (
                     <li
                       key={index}
                       className="text-primary h-auto text-3xl font-bold whitespace-normal uppercase sm:text-5xl"
@@ -45,10 +75,10 @@ const Sidebar = () => {
                       {label}
 
                       <ul className="border-muted ml-4 flex flex-col gap-2 border-l-4">
-                        {subMenu.map((subMenuItem, index) => (
+                        {submenu.map((subMenuItem, index) => (
                           <li key={index}>
                             <ButtonLink
-                              href={`/${path}/${subMenuItem.path}`}
+                              href={`/${subMenuItem.path}`}
                               variant="link"
                               className="text-muted-foreground font-bold uppercase sm:text-xl"
                               aria-label={`Link to ${subMenuItem.label}`}
@@ -64,7 +94,7 @@ const Sidebar = () => {
                       <ButtonLink
                         href={`/${path}`}
                         variant="link"
-                        className="h-auto text-3xl font-bold whitespace-normal uppercase sm:text-5xl"
+                        className="h-auto px-0 text-3xl font-bold whitespace-normal uppercase sm:text-5xl"
                         aria-label={`Link to ${label}`}
                       >
                         {label}

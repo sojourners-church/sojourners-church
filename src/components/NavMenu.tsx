@@ -1,20 +1,48 @@
+import { ChevronDown } from "lucide-react";
 import * as React from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
 
-import { navEntries } from "@/lib/nav";
+interface MenuItem {
+  path: string;
+  label: string;
+  order: number;
+  type: string | null;
+  submenu: MenuItem[];
+}
+
+const getMenu = async () => {
+  const res = await fetch(
+    `${import.meta.env.DEV ? "http://localhost:4321" : import.meta.env.SITE}/api/Nav.json`,
+  );
+  const data = await res.json();
+
+  return data;
+};
 
 const NavMenu: React.FC<React.ComponentProps<"nav">> = ({ ...props }) => {
+  const [menu, setMenu] = React.useState<MenuItem[] | null>(null);
+
+  React.useEffect(() => {
+    getMenu().then((data) => {
+      setMenu(data);
+    });
+  }, []);
+
+  if (!menu) {
+    return <nav {...props}>Loading...</nav>;
+  }
+
   return (
     <nav {...props}>
-      {navEntries.map(({ label, subMenu, path }) =>
-        subMenu ? (
+      {menu.map(({ label, submenu, path }) =>
+        submenu.length > 0 ? (
           <DropdownMenu key={label}>
             <DropdownMenuTrigger asChild>
               <Button
@@ -29,9 +57,9 @@ const NavMenu: React.FC<React.ComponentProps<"nav">> = ({ ...props }) => {
               align="start"
               className="animate-in fade-in slide-in-from-top-1 w-56"
             >
-              {subMenu.map((subItem) => (
+              {submenu.map((subItem) => (
                 <DropdownMenuItem key={subItem.path} asChild>
-                  <a href={`/${path}/${subItem.path}`}>{subItem.label}</a>
+                  <a href={`/${subItem.path}`}>{subItem.label}</a>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>

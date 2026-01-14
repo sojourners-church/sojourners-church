@@ -3,50 +3,7 @@
     "name": "Astro Church",
     "youtube": "https://www.youtube.com/@CodinginPublic"
   },
-  "header": {
-    "menu": [
-      {
-        "title": "About Us",
-        "subMenu": [
-          {
-            "title": "What We Believe"
-          },
-          {
-            "title": "Leadership"
-          }
-        ]
-      },
-      {
-        "title": "Life Together",
-        "subMenu": [
-          {
-            "title": "Sundays"
-          },
-          {
-            "title": "Community Rhythms"
-          },
-          {
-            "title": "Church Membership"
-          },
-          {
-            "title": "Calendar",
-            "type": "Events"
-          }
-        ]
-      },
-      {
-        "title": "Sermons",
-        "type": "Sermons"
-      },
-      {
-        "title": "Writings",
-        "type": "Blog"
-      },
-      {
-        "title": "What is the Gospel?"
-      }
-    ]
-  },
+  "header": {},
   "body": {
     "hero": {
       "text": "<span class='opacity-40'>Free, open-source template</span><span class='text-primary'> for building great church websites</span><span class='opacity-40'> with Astro</span>",

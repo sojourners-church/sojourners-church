@@ -8,12 +8,14 @@ import {
   getAllSermonData,
 } from "@/lib/posts";
 
-import { sermonsPath } from "@/lib/nav";
+import { sermonsPath } from "@/lib/getMenuItems";
+
 import SpotifyEmbed from "@/components/SpotifyEmbed";
 import Filter from "@/components/Filters/Filter";
 import { CardDisplay } from "@/components/Cards/CardDisplay";
 import Meta from "@/components/Meta";
 import { format as datefnsFormat } from "date-fns";
+import { getCollection } from "astro:content";
 
 const allSermonData = await getAllSermonData();
 const allSeriesData = await getAllSeriesData();

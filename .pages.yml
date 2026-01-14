@@ -206,12 +206,18 @@ content:
     view:
       fields: [title, order]
       primary: title
-      sort: [ order, title ]
+      sort: [order, title]
       default:
         sort: order
         order: asc
     fields:
-      - { name: title, label: Title, type: string, required: true, description: Ensure title exactly matches title in menu configuration under Site Config. }
+      - {
+          name: title,
+          label: Title,
+          type: string,
+          required: true,
+          description: Ensure title exactly matches title in menu configuration under Site Config.,
+        }
       - name: order
         label: Menu Order
         type: number
@@ -239,36 +245,6 @@ content:
         type: object
         fields:
           - { name: logo, label: Logo, type: image }
-          - name: menu
-            label: Menu
-            type: object
-            list:
-              collapsible:
-                collapsed: true
-                summary: "{fields.title}"
-            fields:
-              - { name: title, label: Title, type: string }
-              - name: type
-                label: Type
-                type: select
-                description: Ensure you only select each item ONCE in the whole menu
-                options:
-                  values: [Blog, Events, Sermons]
-              - name: subMenu
-                label: Sub Menu
-                type: object
-                list:
-                  collapsible:
-                    collapsed: true
-                    summary: "{fields.title}"
-                fields:
-                  - { name: title, label: Title, type: string }
-                  - name: type
-                    label: Type
-                    type: select
-                    description: Ensure you only select each item ONCE in the whole menu
-                    options:
-                      values: [Blog, Events, Sermons]
       - name: body
         label: Body
         type: object
