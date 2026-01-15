@@ -6,9 +6,12 @@ import SocialMediaLinks from "@/components/SocialMediaLinks";
 
 import config from "@/site.config.json";
 const { left, form, give } = config.footer;
+
+const RESEND_SEGMENT_ID = import.meta.env.RESEND_SEGMENT_ID;
+const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
 ---
 
-<footer class="bg-accent text-accent-foreground layout-base py-8">
+<footer class="bg-secondary text-secondary-foreground layout-base py-8">
   <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
     <section class="flex flex-col gap-8">
       <h2 class="sr-only">Address & Contact Info</h2>
@@ -30,13 +33,22 @@ const { left, form, give } = config.footer;
     </section>
 
     {
-      form.active && (
+      form.active && RESEND_SEGMENT_ID && RESEND_API_KEY ? (
         <section class="flex flex-col gap-4">
           <div class="flex flex-col gap-2">
             <StyledText as="h2" variant="heading" set:html={form.heading} />
             <div set:html={form.description} />
           </div>
           <SubscribeForm client:idle />
+        </section>
+      ) : (
+        <section class="flex flex-col gap-4">
+          <div class="flex flex-col gap-2">
+            <StyledText as="h2" variant="heading" className="text-destructive">
+              ERROR: Missing RESEND_API_KEY or RESEND_SEGMENT_ID. Check site
+              config.
+            </StyledText>
+          </div>
         </section>
       )
     }
