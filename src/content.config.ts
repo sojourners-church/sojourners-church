@@ -21,6 +21,7 @@ const siteConfig = defineCollection({
   schema: z.object({
     general: z.object({
       name: z.string(),
+      description: z.string(),
       youtube: z.string().optional(),
     }),
     header: z

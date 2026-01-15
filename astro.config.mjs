@@ -11,6 +11,8 @@ import remarkDirective from "remark-directive";
 // eslint-disable-next-line no-restricted-imports
 import { remarkDirectiveToHTML } from "./src/lib/remark-directive-to-html";
 
+import sitemap from "@astrojs/sitemap";
+
 const SITE_URL =
   process.env.CONTEXT === "production"
     ? process.env.URL
@@ -25,12 +27,10 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [
-    react({
-      babel: {
-        plugins: [reactCompilerPlugin],
-      },
-    }),
-  ],
+  integrations: [react({
+    babel: {
+      plugins: [reactCompilerPlugin],
+    },
+  }), sitemap()],
   adapter: netlify(),
 });

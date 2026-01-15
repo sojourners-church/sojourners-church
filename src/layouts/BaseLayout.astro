@@ -38,10 +38,8 @@ const metaTitle = `${config?.data.general.name}${pageTitle ? ` | ${pageTitle}` :
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="Website for Sojourners Church. A baptistic, reformed, non-denominational church in Albert Lea, Minnesota. Join us Sundays at 10am in the Skyline Plaza!"
-    />
+    <meta name="description" content={config?.data.general.description} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- FAVICON -->
     <link rel="icon" type="image/svg+xml" href={"/favicon.svg"} />

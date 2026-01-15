@@ -211,13 +211,7 @@ content:
         sort: order
         order: asc
     fields:
-      - {
-          name: title,
-          label: Title,
-          type: string,
-          required: true,
-          description: Ensure title exactly matches title in menu configuration under Site Config.,
-        }
+      - { name: title, label: Title, type: string, required: true }
       - name: order
         label: Menu Order
         type: number
@@ -239,6 +233,13 @@ content:
         type: object
         fields:
           - { name: name, label: Church Name, type: string, required: true }
+          - {
+              name: description,
+              label: Church Description,
+              type: string,
+              required: true,
+              description: For SEO metadata.,
+            }
           - { name: youtube, label: YouTube Channel, type: string }
       - name: header
         label: Header
