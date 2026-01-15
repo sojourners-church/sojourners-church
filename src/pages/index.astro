@@ -5,9 +5,11 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { StyledText } from "@/components/StyledText";
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import config from "@/site.config.json";
+import { getEntry } from "astro:content";
 
-const { hero, cta } = config.body;
+const config = await getEntry("config", "siteconfig");
+const hero = config?.data.body?.hero;
+const cta = config?.data.body?.cta;
 
 const bgImage = import.meta.glob<{ default: ImageMetadata }>(`src/assets/*`);
 ---
@@ -18,24 +20,23 @@ const bgImage = import.meta.glob<{ default: ImageMetadata }>(`src/assets/*`);
       class="grid min-h-screen w-full bg-cover bg-right"
       aria-labelledby="hero-heading"
     >
-      <!-- BACKGROUND IMG -->
+      <!-- BACKGROUND IMG & OVERLAY -->
       {
-        "bgImage" in hero && (
-          <Image
-            src={bgImage[`/${hero.bgImage}`]()}
-            alt="Homepage background"
-            class="absolute inset-0 w-full h-full object-cover"
-            priority
-          />
+        hero?.bgImage && (
+          <>
+            <Image
+              src={bgImage[`/${hero.bgImage}`]()}
+              alt="Homepage background"
+              class="absolute inset-0 w-full h-full object-cover"
+              priority
+            />
+            <div
+              class="bg-muted col-start-1 row-start-1 h-full w-full opacity-85"
+              aria-hidden="true"
+            />
+          </>
         )
       }
-
-      <!-- BACKGROUND OVERLAY -->
-      <div
-        class="bg-muted col-start-1 row-start-1 h-full w-full opacity-85"
-        aria-hidden="true"
-      >
-      </div>
 
       <!-- HERO CONTENT -->
       <div class="layout-base isolate col-start-1 row-start-1 gap-y-8">
@@ -43,13 +44,13 @@ const bgImage = import.meta.glob<{ default: ImageMetadata }>(`src/assets/*`);
           as="h2"
           id="hero-heading"
           variant="displayXL"
-          set:html={hero.text}
+          set:html={hero?.text}
         />
         {
-          cta.text && (
+          cta?.text && (
             <ButtonLink
               variant="secondary"
-              href={cta.link}
+              href={cta.link ?? ""}
               target="_blank"
               className="w-full h-auto"
             >

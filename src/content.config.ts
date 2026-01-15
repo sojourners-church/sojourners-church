@@ -1,6 +1,5 @@
 import { glob } from "astro/loaders";
 import { defineCollection, reference, z } from "astro:content";
-// import formatOsis from "@/lib/bible-reference-formatter/en";
 import osisToEn from "bible-reference-formatter";
 
 const getSlugFromFilename = (val: string): string => {
@@ -16,6 +15,83 @@ const isSunday = (input: Date) => {
   );
   return date.getDay() === 0;
 };
+
+const siteConfig = defineCollection({
+  loader: glob({ pattern: "site.config.json", base: "./src/content/" }),
+  schema: z.object({
+    general: z.object({
+      name: z.string(),
+      youtube: z.string().optional(),
+    }),
+    header: z
+      .object({
+        logo: z.string().optional(),
+      })
+      .optional(),
+    body: z
+      .object({
+        hero: z
+          .object({
+            text: z.string(),
+            bgImage: z.string().optional(),
+          })
+          .optional(),
+        cta: z
+          .object({
+            text: z.string().optional(),
+            link: z.string().optional(),
+          })
+          .optional(),
+      })
+      .optional(),
+    footer: z
+      .object({
+        left: z
+          .object({
+            sections: z
+              .array(
+                z.object({
+                  heading: z.string().optional(),
+                  description: z.string().optional(),
+                }),
+              )
+              .optional(),
+            social: z
+              .array(
+                z.object({
+                  name: z.string(),
+                  icon: z.string(),
+                  link: z.string(),
+                  hint: z.string().optional(),
+                }),
+              )
+              .optional(),
+          })
+          .optional(),
+        form: z
+          .object({
+            active: z.boolean(),
+            heading: z.string().optional(),
+            description: z.string().optional(),
+          })
+          .optional(),
+        give: z
+          .object({
+            active: z.boolean(),
+            heading: z.string().optional(),
+            description: z.string().optional(),
+            link: z.string().optional(),
+          })
+          .optional(),
+      })
+      .optional(),
+    theme: z
+      .object({
+        customCSS: z.string().optional(),
+      })
+      .optional(),
+  }),
+});
 
 const sermonsCollection = defineCollection({
   loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/sermons" }),
@@ -155,6 +231,7 @@ const blogCollection = defineCollection({
 });
 
 export const collections = {
+  config: siteConfig,
   sermons: sermonsCollection,
   series: seriesCollection,
   preachers: preachersCollection,

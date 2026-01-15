@@ -232,13 +232,13 @@ content:
   - name: config
     label: Site Config
     type: file
-    path: src/site.config.json
+    path: src/content/site.config.json
     fields:
       - name: general
         label: General Settings
         type: object
         fields:
-          - { name: name, label: Church Name, type: string }
+          - { name: name, label: Church Name, type: string, required: true }
           - { name: youtube, label: YouTube Channel, type: string }
       - name: header
         label: Header
@@ -257,6 +257,7 @@ content:
                 label: Hero Text
                 type: code
                 options: { language: html }
+                required: true
               - name: bgImage
                 label: Background Image
                 description: Use https://squoosh.app/ to process images.
@@ -289,10 +290,12 @@ content:
                   - name: heading
                     label: Heading
                     type: string
+                    required: true
                   - name: description
                     label: Description
                     type: code
                     options: { language: html }
+                    required: true
               - name: social
                 label: Social Icons
                 type: object
@@ -304,13 +307,16 @@ content:
                   - name: name
                     label: Name
                     type: string
+                    required: true
                   - name: icon
                     label: Icon
                     description: Use name from https://iconify.design/
                     type: string
+                    required: true
                   - name: link
                     label: Link
                     type: string
+                    required: true
                   - name: hint
                     label: Hint
                     type: string
@@ -322,6 +328,7 @@ content:
                 label: Active
                 type: boolean
                 default: true
+                required: true
               - name: heading
                 label: Heading
                 type: string
@@ -332,6 +339,11 @@ content:
             label: Give
             type: object
             fields:
+              - name: active
+                label: Active
+                type: boolean
+                default: true
+                required: true
               - name: heading
                 label: Heading
                 type: string

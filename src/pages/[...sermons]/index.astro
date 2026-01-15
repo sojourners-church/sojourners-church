@@ -15,11 +15,12 @@ import Filter from "@/components/Filters/Filter";
 import { CardDisplay } from "@/components/Cards/CardDisplay";
 import Meta from "@/components/Meta";
 import { format as datefnsFormat } from "date-fns";
-import { getCollection } from "astro:content";
-
+import { getEntry } from "astro:content";
 const allSermonData = await getAllSermonData();
 const allSeriesData = await getAllSeriesData();
 const allPreachersData = await getAllPreachersData();
+
+const config = await getEntry("config", "siteconfig");
 
 const latestSermon = allSermonData[0];
 const latestSermonDateFormatted = datefnsFormat(
@@ -65,6 +66,7 @@ export const getStaticPaths = () => {
         type="audio"
         spotifyURL={latestSermon.data.spotifyURL}
         query={latestSermonDateFormatted}
+        youtubeFallback={config?.data.general.youtube}
         client:idle
       />
     </section>

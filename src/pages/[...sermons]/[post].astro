@@ -5,12 +5,14 @@ import SpotifyEmbed from "@/components/SpotifyEmbed";
 import Meta from "@/components/Meta";
 import { format as datefnsFormat } from "date-fns";
 
-import { render } from "astro:content";
+import { render, getEntry } from "astro:content";
 
 import { paths } from "@/lib/getMenuItems";
 
 import type { GetStaticPaths } from "astro";
 import { getAllSermonData } from "@/lib/posts";
+
+const config = await getEntry("config", "siteconfig");
 
 // Get static paths
 export const getStaticPaths = (async () => {
@@ -66,6 +68,7 @@ const { Content } = await render(page);
         type="video"
         spotifyURL={spotifyURL}
         query={dateFormatted}
+        youtubeFallback={config?.data.general.youtube}
         client:load
       />
     </div>

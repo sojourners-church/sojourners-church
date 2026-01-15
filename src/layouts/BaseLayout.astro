@@ -2,7 +2,7 @@
 import "@/styles/global.css";
 import "@/styles/theme.css";
 
-import config from "@/site.config.json";
+import { getEntry } from "astro:content";
 
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
@@ -11,9 +11,11 @@ interface Props {
   pageTitle?: string;
 }
 
+const config = await getEntry("config", "siteconfig");
+
 const { pageTitle } = Astro.props;
 
-const metaTitle = `${config.general.name}${pageTitle ? ` | ${pageTitle}` : ""}`;
+const metaTitle = `${config?.data.general.name}${pageTitle ? ` | ${pageTitle}` : ""}`;
 ---
 
 <!doctype html>

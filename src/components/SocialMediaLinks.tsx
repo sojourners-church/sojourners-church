@@ -6,7 +6,15 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import config from "@/site.config.json";
+
+interface SocialMediaLinksProps {
+  social: {
+    name?: string | undefined;
+    link?: string | undefined;
+    icon?: string | undefined;
+    hint?: string | undefined;
+  }[];
+}
 
 interface SocialButtonProps {
   name: string;
@@ -18,12 +26,10 @@ interface SocialButtonWithTooltipProps extends SocialButtonProps {
   hint: string;
 }
 
-const { social } = config.footer.left;
-
-const SocialMediaLinks = () => {
+const SocialMediaLinks: React.FC<SocialMediaLinksProps> = ({ social }) => {
   return (
     <div className="flex">
-      {social.map(({ name, link, icon, hint }) =>
+      {social.map(({ name = "", link = "", icon = "", hint }) =>
         hint ? (
           <SocialButtonWithTooltip
             key={name}
