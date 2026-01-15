@@ -1,50 +1,74 @@
 :root {
-  --fc-small-font-size: 0.75em;
-  --fc-page-bg-color: var(--color-muted);
-  --fc-neutral-bg-color: var(--color-muted);
-  --fc-neutral-text-color: var(--color-muted-foreground);
+  /* -------------- */
+  /*      TABLE    */
+  /* -------------- */
+  /* Borders */
   --fc-border-color: var(--color-muted);
-  --fc-button-text-color: var(--color-muted-foreground);
+
+  /* -------------- */
+  /*      HEADER    */
+  /* -------------- */
+  /* Title (Month YYYY) */
+  .fc .fc-toolbar-title {
+    @apply text-xl font-bold uppercase md:text-3xl;
+  }
+  /* Today Button */
+  .fc .fc-today-button {
+    @apply font-medium uppercase;
+  }
+  /* Buttons */
+  .fc .fc-button-primary:focus {
+    @apply focus-visible:border-ring focus-visible:ring-ring shadow-none outline-none focus-visible:ring-2;
+  }
+  /* Buttons */
+  .fc .fc-button-primary:not(:disabled):active:focus {
+    @apply shadow-none;
+  }
+  /* Button BG */
   --fc-button-bg-color: var(--color-muted);
-  --fc-button-border-color: var(--color-muted);
-  --fc-button-hover-bg-color: color-mix(
+  /* Button Text */
+  --fc-button-text-color: var(--color-muted-foreground);
+  /* Button Border */
+  --fc-button-border-color: var(--fc-button-bg-color);
+  /* Button Hover */
+  --fc-button-hover-bg-color: var(--color-accent);
+  /* Button Hover Border */
+  --fc-button-hover-border-color: var(--fc-button-hover-bg-color);
+  /* Button Hover Press */
+  --fc-button-active-bg-color: color-mix(
     in srgb,
     var(--color-muted),
     transparent 50%
   );
-  --fc-button-hover-border-color: var(--fc-button-hover-bg-color);
-  --fc-button-active-bg-color: var(--color-accent);
+  /* Button Hover Press Border */
   --fc-button-active-border-color: var(--fc-button-active-bg-color);
-  --fc-event-bg-color: var(--color-primary);
-  --fc-event-border-color: var(--color-primary); /* Dot color */
-  --fc-event-text-color: var(--color-primary);
-  --fc-event-selected-overlay-color: var(--color-primary);
-  --fc-more-link-bg-color: var(--color-primary);
-  --fc-more-link-text-color: inherit;
-  --fc-event-resizer-thickness: 8px;
-  --fc-event-resizer-dot-total-width: 8px;
-  --fc-event-resizer-dot-border-width: 1px;
-  --fc-non-business-color: hsla(0, 0%, 84%, 0.3);
-  --fc-bg-event-color: var(--color-primary);
-  --fc-bg-event-opacity: 0.3;
-  --fc-highlight-color: var(--color-primary);
-  --fc-today-bg-color: var(--color-accent);
-  --fc-now-indicator-color: red;
-  --fc-list-event-hover-bg-color: var(--color-accent);
-}
 
-.fc {
-  & .fc-toolbar-title {
-    @apply text-xl font-bold uppercase md:text-3xl;
+  /* --------------------- */
+  /*      DAY HEADINGS     */
+  /* --------------------- */
+  /* Day Heading */
+  .fc-list-day-text,
+  .fc-list-day-side-text {
+    @apply text-muted-foreground font-medium uppercase;
   }
-  & .fc-list-event.fc-event-forced-url:hover a {
+  --fc-neutral-bg-color: var(--color-muted);
+  /* Highlight "Today" text */
+  .fc-day-today .fc-list-day-text,
+  .fc-day-today .fc-list-day-side-text {
+    @apply text-primary;
+  }
+
+  /* --------------- */
+  /*      EVENTS     */
+  /* --------------- */
+  /* Event Hover */
+  --fc-list-event-hover-bg-color: var(--color-accent);
+  /* Underline Event Title on Hover */
+  .fc .fc-list-event.fc-event-forced-url:hover a {
     @apply decoration-primary;
   }
-  & .fc-list-day-text,
-  .fc-list-day-side-text {
-    @apply text-muted-foreground uppercase;
-  }
-  & .fc-today-button {
-    @apply uppercase;
-  }
+  /* Event Dot */
+  --fc-event-border-color: var(--color-primary);
+  /* Event Dot Size */
+  --fc-list-event-dot-width: 10px;
 }
