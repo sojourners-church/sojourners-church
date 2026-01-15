@@ -2,7 +2,6 @@
 title: Leadership
 order: 2
 ---
-
 # Leadership
 
 > Pay careful attention to yourselves and to all the flock, in which the Holy Spirit has made you overseers, to care for the church of God, which he obtained with his own blood. - Acts 20:28
@@ -13,7 +12,7 @@ We believe that the local church should be led by a plurality of qualified elder
 
 ### Tyler Mykkanen, Pastor for Preaching
 
-![](src/assets/mykkanens.webp)
+![](src/assets/mykkanen.webp)
 
 Tyler Mykkanen is Pastor for Preaching at Sojourners Church. He and his wife Nicole have been married since 2003 and have three children (Malachi, Ruby, and Ella). Tyler worked as a special education teacher for eight years before attending seminary at Bethlehem College and Seminary in Minneapolis, MN. He graduated with his MDiv in the spring of 2018 and joined Sojourners in September 2018.
 
@@ -35,4 +34,4 @@ His main focus of study is Systematic Theology and Creation. "_His divine power 
 
 ### Thad Rosenberg, Elder
 
-Info coming soon…
+![](src/assets/rosenberg.webp)
