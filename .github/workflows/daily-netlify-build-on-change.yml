@@ -1,0 +1,29 @@
+name: Daily Netlify Build on Change
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs every day at midnight UTC
+  workflow_dispatch: # Allows you to run it manually for testing
+
+jobs:
+  check_and_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # Fetch enough history to compare
+
+      - name: Check for changes in last 24 hours
+        id: check
+        run: |
+          # Check if there are any commits in the last 24 hours
+          if [ $(git log --since="24 hours ago" | wc -l) -gt 0 ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger Netlify Build
+        if: steps.check.outputs.changes == 'true'
+        run: |
+          curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }}
