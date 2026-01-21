@@ -5,6 +5,6 @@ series: src/content/series/thessalonians-gospel-encouragement-for-everyday-life.
 scripture:
   - 1Thess.5.12-1Thess.5.15
 preacher: src/content/preachers/tyler-mykkanen.md
-spotifyURL: 1NdFgmJoMKA7iB0ETZqTwZ
-bulletinURL: 1Q_APlL_OgMxXSJciUYl-29rIIye8mOB9
+spotifyURL: https://open.spotify.com/episode/1NdFgmJoMKA7iB0ETZqTwZ?si=f125b11ec7c84aec
+bulletinURL: https://drive.google.com/file/d/1Q_APlL_OgMxXSJciUYl-29rIIye8mOB9/view
 ---
