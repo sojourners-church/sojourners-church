@@ -358,6 +358,20 @@ content:
         label: Theme
         type: object
         fields:
+          - name: colorScheme
+            Label: Color Scheme
+            type: select
+            description: Select Auto to support user preferences or Light or Dark to force theme color scheme.
+            default: auto
+            required: true
+            options:
+              values:
+                - value: auto
+                  label: Auto
+                - value: light
+                  label: Light
+                - value: dark
+                  label: Dark
           - name: customCSS
             label: Custom CSS
             type: code

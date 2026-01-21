@@ -16,19 +16,22 @@ const config = await getEntry("config", "siteconfig");
 const { pageTitle } = Astro.props;
 
 const siteName = config?.data.general.name ?? "Church Website";
+const colorScheme = config?.data.theme?.colorScheme ?? "auto";
 const metaTitle = pageTitle ? `${pageTitle} | ${siteName}` : siteName;
 const metaDescription =
   config?.data.general.description ?? "Church website built with Astro.";
 ---
 
-<script is:inline>
+<script is:inline define:vars={{ colorScheme }}>
   const getThemePreference = () => {
     return window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
       : "light";
   };
 
-  const isDark = getThemePreference() === "dark";
+  const isDark =
+    colorScheme === "dark" ||
+    (colorScheme === "auto" && getThemePreference() === "dark");
   document.documentElement.classList[isDark ? "add" : "remove"]("dark");
 </script>
 

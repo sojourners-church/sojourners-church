@@ -88,6 +88,7 @@ const siteConfig = defineCollection({
       .optional(),
     theme: z
       .object({
+        colorScheme: z.string(),
         customCSS: z.string().optional(),
       })
       .optional(),
