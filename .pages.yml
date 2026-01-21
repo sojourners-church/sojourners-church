@@ -359,7 +359,7 @@ content:
         type: object
         fields:
           - name: colorScheme
-            Label: Color Scheme
+            label: Color Scheme
             type: select
             description: Select Auto to support user preferences or Light or Dark to force theme color scheme.
             default: auto
