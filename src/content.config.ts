@@ -22,11 +22,13 @@ const siteConfig = defineCollection({
     general: z.object({
       name: z.string(),
       description: z.string(),
+      logo: z.string().optional(),
       youtube: z.string().optional(),
     }),
     header: z
       .object({
-        logo: z.string().optional(),
+        displayTitle: z.boolean(),
+        displayLogo: z.boolean(),
       })
       .optional(),
     body: z
