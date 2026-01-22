@@ -6,7 +6,7 @@
   },
   "header": {
     "displayTitle": true,
-    "displayLogo": true
+    "displayLogo": false
   },
   "body": {
     "hero": {
