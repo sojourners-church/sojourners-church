@@ -38,11 +38,11 @@ const CardCustom: React.FC<CardCustomProps> = ({ data: inputData, paths }) => {
           href={`/${baseUrl}/${id}`}
           className="flex max-h-48 w-full flex-row rounded-sm"
         >
-          {isSermon && (
+          {isSermon && inputData.series.data.image && (
             <img
-              src={inputData.series.data.imageSquare}
+              src={inputData.series.data.image}
               alt="series"
-              className="my-4 ml-4 h-20 self-center rounded-sm md:m-0 md:h-full md:rounded-none md:rounded-l-sm"
+              className="my-4 ml-4 h-20 w-20 self-center rounded-sm object-cover object-center md:m-0 md:h-48 md:w-48 md:rounded-none md:rounded-l-sm"
             />
           )}
           <div className="flex flex-2/3 flex-col justify-center gap-2 p-4 md:p-8">

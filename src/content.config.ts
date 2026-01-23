@@ -134,8 +134,7 @@ const seriesCollection = defineCollection({
   loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/series" }),
   schema: z.object({
     title: z.string(),
-    image: z.string(),
-    imageSquare: z.string(),
+    image: z.string().optional(),
     startDate: z.date(),
     book: z
       .array(
