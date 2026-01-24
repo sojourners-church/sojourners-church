@@ -223,6 +223,11 @@ const preachersCollection = defineCollection({
 
 const pagesCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/pages" }),
+  schema: z.object({
+    title: z.string(),
+    order: z.number().optional(),
+    type: z.enum(["Blog", "Events", "Sermons"]).optional(),
+  }),
 });
 
 const blogCollection = defineCollection({
