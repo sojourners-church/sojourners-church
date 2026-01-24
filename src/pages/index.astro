@@ -5,11 +5,10 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { StyledText } from "@/components/StyledText";
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getEntry } from "astro:content";
+import { siteConfig } from "@/lib/contentCollectionDataFetching";
 
-const config = await getEntry("config", "siteconfig");
-const hero = config?.data.body?.hero;
-const cta = config?.data.body?.cta;
+const hero = siteConfig?.data.body?.hero;
+const cta = siteConfig?.data.body?.cta;
 
 const bgImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/*.{jpeg,jpg,png,webp,svg}",
@@ -21,7 +20,7 @@ const selectedImage = hero?.bgImage ? bgImages[imagePath] : null;
 
 <BaseLayout pageTitle="Home">
   <main class="relative min-h-[calc(100vh-6.5rem)]">
-    <h1 class="sr-only">{config?.data.general.name}</h1>
+    <h1 class="sr-only">{siteConfig?.data.general.name}</h1>
     <section
       class="grid min-h-[calc(100vh-6.5rem)] w-full bg-cover bg-right"
       aria-labelledby="hero-heading"

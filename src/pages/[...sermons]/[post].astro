@@ -4,20 +4,15 @@ import { StyledText } from "@/components/StyledText";
 import SpotifyEmbed from "@/components/SpotifyEmbed";
 import Meta from "@/components/Meta";
 import { format as datefnsFormat } from "date-fns";
-
 import { render, getEntry } from "astro:content";
-
 import { paths } from "@/lib/getMenuItems";
-
 import type { GetStaticPaths } from "astro";
-import { getAllSermonData } from "@/lib/posts";
-
-const config = await getEntry("config", "siteconfig");
+import { allSermonData, siteConfig } from "@/lib/contentCollectionDataFetching";
 
 // Get static paths
 export const getStaticPaths = (async () => {
   return paths.sermons?.path
-    ? (await getAllSermonData()).map((page) => ({
+    ? allSermonData.map((page) => ({
         params: {
           post: `${paths.sermons?.path}/${page.id}`,
         },
@@ -69,7 +64,7 @@ const { Content: PreacherContent } = await render(page.preacher);
         type="video"
         spotifyURL={spotifyURL}
         query={dateFormatted}
-        youtubeURL={config?.data.general.youtube}
+        youtubeURL={siteConfig?.data.general.youtube}
         client:load
       />
     </div>

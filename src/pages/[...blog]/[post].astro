@@ -7,12 +7,14 @@ import MarkdownContentWrapper from "@/components/MarkdownContentWrapper.astro";
 import { StyledText } from "@/components/StyledText";
 import { paths } from "@/lib/getMenuItems";
 
+import { allBlogData } from "@/lib/contentCollectionDataFetching";
+
 import type { GetStaticPaths } from "astro";
 
 // Get static paths
 export const getStaticPaths = (async () => {
   return paths.blog?.path
-    ? (await getCollection("blog")).map((page) => ({
+    ? allBlogData.map((page) => ({
         params: {
           post: `${paths.blog?.path}/${page.id}`,
         },

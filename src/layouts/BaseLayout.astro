@@ -2,24 +2,21 @@
 import "@/styles/global.css";
 import "@/styles/theme.css";
 
-import { getEntry } from "astro:content";
-
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import { siteConfig } from "@/lib/contentCollectionDataFetching";
 
 interface Props {
   pageTitle: string;
 }
 
-const config = await getEntry("config", "siteconfig");
-
 const { pageTitle } = Astro.props;
 
-const siteName = config?.data.general.name ?? "Church Website";
-const colorScheme = config?.data.theme?.colorScheme ?? "auto";
+const siteName = siteConfig?.data.general.name ?? "Church Website";
+const colorScheme = siteConfig?.data.theme?.colorScheme ?? "auto";
 const metaTitle = pageTitle ? `${pageTitle} | ${siteName}` : siteName;
 const metaDescription =
-  config?.data.general.description ?? "Church website built with Astro.";
+  siteConfig?.data.general.description ?? "Church website built with Astro.";
 ---
 
 <script is:inline define:vars={{ colorScheme }}>

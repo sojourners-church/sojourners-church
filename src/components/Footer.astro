@@ -3,12 +3,11 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { StyledText } from "@/components/StyledText";
 import SubscribeForm from "@/components/SubscribeForm/SubscribeForm";
 import SocialMediaLinks from "@/components/SocialMediaLinks";
-import { getEntry } from "astro:content";
+import { siteConfig } from "@/lib/contentCollectionDataFetching";
 
-const config = await getEntry("config", "siteconfig");
-const left = config?.data.footer?.left;
-const form = config?.data.footer?.form;
-const give = config?.data.footer?.give;
+const left = siteConfig?.data.footer?.left;
+const form = siteConfig?.data.footer?.form;
+const give = siteConfig?.data.footer?.give;
 
 const RESEND_SEGMENT_ID = import.meta.env.RESEND_SEGMENT_ID;
 const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;

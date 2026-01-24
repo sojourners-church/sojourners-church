@@ -5,10 +5,9 @@ import { StyledText } from "@/components/StyledText";
 import { menu } from "@/lib/getMenuItems";
 import { Image } from "astro:assets";
 import { type ImageMetadata } from "astro";
-import { getEntry } from "astro:content";
-const logoImage = import.meta.glob<{ default: ImageMetadata }>(`src/assets/*`);
+import { siteConfig } from "@/lib/contentCollectionDataFetching";
 
-const config = await getEntry("config", "siteconfig");
+const logoImage = import.meta.glob<{ default: ImageMetadata }>(`src/assets/*`);
 
 const currentPath = Astro.url.pathname;
 ---
@@ -18,19 +17,19 @@ const currentPath = Astro.url.pathname;
 >
   <div class="flex w-full items-center">
     {
-      config?.data.header?.displayTitle ? (
+      siteConfig?.data.header?.displayTitle ? (
         <StyledText as="h2" variant="displayLG" className="flex-1">
-          <a href="/">{config?.data.general.name}</a>
+          <a href="/">{siteConfig?.data.general.name}</a>
         </StyledText>
       ) : (
-        <h2 class="sr-only">{config?.data.general.name}</h2>
+        <h2 class="sr-only">{siteConfig?.data.general.name}</h2>
       )
     }
 
     {
-      config?.data.header?.displayLogo && config.data.general.logo && (
+      siteConfig?.data.header?.displayLogo && siteConfig.data.general.logo && (
         <Image
-          src={logoImage[`/${config.data.general.logo}`]()}
+          src={logoImage[`/${siteConfig.data.general.logo}`]()}
           alt="logo"
           class={"max-h-18"}
         />

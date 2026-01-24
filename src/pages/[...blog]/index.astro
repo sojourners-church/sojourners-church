@@ -3,17 +3,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Filter from "@/components/Filters/Filter";
 import { CardDisplay } from "@/components/Cards/CardDisplay";
 import { paths } from "@/lib/getMenuItems";
-
-import { getCollection } from "astro:content";
+import { allBlogData } from "@/lib/contentCollectionDataFetching";
 
 // Get static paths
 export const getStaticPaths = () => {
   return paths.blog?.path ? [{ params: { blog: paths.blog.path } }] : [];
 };
-
-const allBlogData = (await getCollection("blog")).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
 
 const getTags = () => {
   const postsWithTags = allBlogData.filter((i) => i.data.tags);
