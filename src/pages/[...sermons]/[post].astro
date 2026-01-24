@@ -5,9 +5,12 @@ import SpotifyEmbed from "@/components/SpotifyEmbed";
 import Meta from "@/components/Meta";
 import { format as datefnsFormat } from "date-fns";
 import { render, getEntry } from "astro:content";
-import { paths } from "@/lib/getMenuItems";
+import { paths } from "@/utils/findPathByType";
 import type { GetStaticPaths } from "astro";
-import { allSermonData, siteConfig } from "@/lib/contentCollectionDataFetching";
+import {
+  allSermonData,
+  siteConfig,
+} from "@/data/contentCollectionDataFetching";
 
 // Get static paths
 export const getStaticPaths = (async () => {

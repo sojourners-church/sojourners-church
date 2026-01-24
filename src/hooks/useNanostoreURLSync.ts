@@ -6,13 +6,13 @@ import {
   $blogFilterParams,
   type BlogFilterParamsValue,
   isBlogFilterKey,
-} from "@/lib/nanostoreBlog";
+} from "@/data/nanostoreBlog";
 import {
   $sermonFilterParams,
   type SermonFilterParamsValue,
   isSermonFilterKey,
-} from "@/lib/nanostoreSermons";
-import { isDateValue } from "@/lib/types";
+} from "@/data/nanostoreSermons";
+import { isDateValue } from "@/types";
 
 type FilterKey = string;
 

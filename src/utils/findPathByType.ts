@@ -1,0 +1,45 @@
+import { type MenuItem, menu } from "@/utils/getMenuItems";
+
+type DynamicPath = {
+  label: string;
+  path: string;
+};
+
+const findPathByType = (
+  menuItems: MenuItem[],
+  targetType: "Blog" | "Events" | "Sermons",
+): DynamicPath | undefined => {
+  const results: DynamicPath[] = [];
+
+  for (const item of menuItems) {
+    if (item.type === targetType) {
+      results.push({
+        label: item.label,
+        path: item.path,
+      });
+    }
+    if (item.submenu.length > 0) {
+      const submenuItems = findPathByType(item.submenu, targetType);
+      if (submenuItems) {
+        results.push({
+          label: submenuItems.label,
+          path: submenuItems.path,
+        });
+      }
+    }
+  }
+
+  if (results.length > 1) {
+    throw new Error(
+      `Max one menu item with type "${targetType}" allowed! Found ${results.length} in configuration.`,
+    );
+  }
+
+  return results[0];
+};
+
+export const paths = {
+  blog: findPathByType(menu, "Blog"),
+  events: findPathByType(menu, "Events"),
+  sermons: findPathByType(menu, "Sermons"),
+};

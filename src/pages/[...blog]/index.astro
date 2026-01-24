@@ -2,8 +2,8 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Filter from "@/components/Filters/Filter";
 import { CardDisplay } from "@/components/Cards/CardDisplay";
-import { paths } from "@/lib/getMenuItems";
-import { allBlogData } from "@/lib/contentCollectionDataFetching";
+import { paths } from "@/utils/findPathByType";
+import { allBlogData } from "@/data/contentCollectionDataFetching";
 
 // Get static paths
 export const getStaticPaths = () => {

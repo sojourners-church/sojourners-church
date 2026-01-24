@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/lib/components/ui/button";
 
 type BaseButtonProps = Parameters<typeof Button>[0];
 type ButtonProps = Omit<BaseButtonProps, "asChild">;

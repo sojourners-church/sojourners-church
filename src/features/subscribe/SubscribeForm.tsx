@@ -2,11 +2,11 @@
 import { useForm } from "@tanstack/react-form";
 import { toast } from "sonner";
 
-import { subscribeFormSchema } from "@/components/SubscribeForm/schema";
-import { Button } from "@/components/ui/button";
-import { Field, FieldError, FieldGroup } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Toaster } from "@/components/ui/sonner";
+import { subscribeFormSchema } from "@/features/subscribe/schema";
+import { Button } from "@/lib/components/ui/button";
+import { Field, FieldError, FieldGroup } from "@/lib/components/ui/field";
+import { Input } from "@/lib/components/ui/input";
+import { Toaster } from "@/lib/components/ui/sonner";
 
 const SubscribeForm = () => {
   const form = useForm({

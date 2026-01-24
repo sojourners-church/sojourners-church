@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Calendar from "@/components/Calendar";
-import { paths } from "@/lib/getMenuItems";
+import { paths } from "@/utils/findPathByType";
 
 export const getStaticPaths = () => {
   return paths.events?.path

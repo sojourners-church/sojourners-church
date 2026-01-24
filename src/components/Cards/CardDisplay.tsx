@@ -2,15 +2,15 @@ import { useStore } from "@nanostores/react";
 import * as React from "react";
 
 import { CardCustom } from "@/components/Cards/CardCustom";
-import { $allBlogData, $filteredBlog } from "@/lib/nanostoreBlog";
-import { $allSermonData, $filteredSermons } from "@/lib/nanostoreSermons";
+import { $allBlogData, $filteredBlog } from "@/data/nanostoreBlog";
+import { $allSermonData, $filteredSermons } from "@/data/nanostoreSermons";
 import {
   type BlogData,
   type SermonData,
   isBlogCollection,
   isSermonCollection,
-} from "@/lib/types";
-import type { Paths } from "@/lib/types";
+} from "@/types";
+import type { Paths } from "@/types";
 
 interface CardDisplayProps {
   data: SermonData[] | BlogData[];

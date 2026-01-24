@@ -25,8 +25,8 @@ import {
 import type { ButtonProps, PopoverProps } from "react-aria-components";
 
 import { useNanostoreURLSync } from "@/hooks/useNanostoreURLSync";
-import type { SermonData } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import type { SermonData } from "@/types";
 
 /* -------------------------------------------------------------------------- */
 /*                                 Types                                       */

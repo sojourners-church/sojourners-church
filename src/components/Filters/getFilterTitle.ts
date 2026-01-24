@@ -1,4 +1,4 @@
-import type { BlogData, PreacherData, SeriesData } from "@/lib/types";
+import type { BlogData, PreacherData, SeriesData } from "@/types";
 
 interface Params {
   blogSearchTerm?: string;

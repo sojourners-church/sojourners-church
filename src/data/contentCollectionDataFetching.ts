@@ -1,11 +1,6 @@
 import { getCollection, getEntry } from "astro:content";
 
-import type {
-  BlogData,
-  PreacherData,
-  SeriesData,
-  SermonData,
-} from "@/lib/types";
+import type { BlogData, PreacherData, SeriesData, SermonData } from "@/types";
 
 /* ================================== */
 /* ========= SITE CONFIG ============ */

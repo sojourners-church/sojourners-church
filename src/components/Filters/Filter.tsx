@@ -6,14 +6,9 @@ import DatePickerCustom from "@/components/Filters/DatePickerCustom";
 import Search from "@/components/Filters/Search";
 import { getFilterTitle } from "@/components/Filters/getFilterTitle";
 import { StyledText } from "@/components/StyledText";
-import { Button } from "@/components/ui/button";
 import { useFilters } from "@/hooks/useFilters";
-import type {
-  BlogData,
-  PreacherData,
-  SeriesData,
-  SermonData,
-} from "@/lib/types";
+import { Button } from "@/lib/components/ui/button";
+import type { BlogData, PreacherData, SeriesData, SermonData } from "@/types";
 
 /* -------------------------------------------------------------------------- */
 /*                                    Types                                   */

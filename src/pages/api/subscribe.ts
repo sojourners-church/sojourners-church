@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { Resend } from "resend";
 import * as z from "zod";
 
-import { subscribeFormSchema } from "@/components/SubscribeForm/schema";
+import { subscribeFormSchema } from "@/features/subscribe/schema";
 
 // TODO: Better error handling
 

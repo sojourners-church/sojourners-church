@@ -9,7 +9,7 @@ import {
   DrawerOverlay,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
+} from "@/lib/components/ui/drawer";
 
 interface MenuItem {
   path: string;

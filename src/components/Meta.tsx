@@ -4,9 +4,9 @@ import { format as datefnsFormat } from "date-fns";
 import * as React from "react";
 import slugify from "slugify";
 
-import { Badge } from "@/components/ui/badge";
 import useIsMobile from "@/hooks/useIsMobile";
-import type { Paths } from "@/lib/types";
+import { Badge } from "@/lib/components/ui/badge";
+import type { Paths } from "@/types";
 
 interface MetaProps {
   date?: Date;

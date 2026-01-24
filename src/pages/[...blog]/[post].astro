@@ -5,9 +5,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Meta from "@/components/Meta";
 import MarkdownContentWrapper from "@/components/MarkdownContentWrapper.astro";
 import { StyledText } from "@/components/StyledText";
-import { paths } from "@/lib/getMenuItems";
+import { paths } from "@/utils/findPathByType";
 
-import { allBlogData } from "@/lib/contentCollectionDataFetching";
+import { allBlogData } from "@/data/contentCollectionDataFetching";
 
 import type { GetStaticPaths } from "astro";
 

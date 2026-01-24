@@ -2,14 +2,14 @@ import * as React from "react";
 
 import Meta from "@/components/Meta";
 import { StyledText } from "@/components/StyledText";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/lib/components/ui/card";
 import {
   type BlogData,
   type SermonData,
   isBlog as isBlogTypeGuard,
   isSermon as isSermonTypeGuard,
-} from "@/lib/types";
-import type { Paths } from "@/lib/types";
+} from "@/types";
+import type { Paths } from "@/types";
 
 interface CardCustomProps {
   data: SermonData | BlogData;

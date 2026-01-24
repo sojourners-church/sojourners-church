@@ -8,18 +8,13 @@ interface SimplifiedPageData {
   type?: string;
 }
 
-interface MenuItem {
+export interface MenuItem {
   path: string;
   label: string;
   order: number;
   type: string | null;
   submenu: MenuItem[];
 }
-
-type DynamicPath = {
-  label: string;
-  path: string;
-};
 
 const getSimplifiedPageData = async (): Promise<SimplifiedPageData[]> => {
   const pages = await getCollection("pages");
@@ -139,43 +134,4 @@ const getMenuItems = async (): Promise<MenuItem[]> => {
   return menu;
 };
 
-const findPathByType = (
-  menuItems: MenuItem[],
-  targetType: string,
-): DynamicPath | undefined => {
-  const results: DynamicPath[] = [];
-
-  for (const item of menuItems) {
-    if (item.type === targetType) {
-      results.push({
-        label: item.label,
-        path: item.path,
-      });
-    }
-    if (item.submenu.length > 0) {
-      const submenuItems = findPathByType(item.submenu, targetType);
-      if (submenuItems) {
-        results.push({
-          label: submenuItems.label,
-          path: submenuItems.path,
-        });
-      }
-    }
-  }
-
-  if (results.length > 1) {
-    throw new Error(
-      `Max one menu item with type "${targetType}" allowed! Found ${results.length} in configuration.`,
-    );
-  }
-
-  return results[0];
-};
-
 export const menu = await getMenuItems();
-
-export const paths = {
-  blog: findPathByType(menu, "Blog"),
-  events: findPathByType(menu, "Events"),
-  sermons: findPathByType(menu, "Sermons"),
-};
