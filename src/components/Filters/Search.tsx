@@ -7,8 +7,8 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import { useDebounce } from "@/lib/hooks/useDebounce";
-import { useNanostoreURLSync } from "@/lib/hooks/useNanostoreURLSync";
+import { useDebounce } from "@/lib/useDebounce";
+import { useNanostoreURLSync } from "@/lib/useNanostoreURLSync";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                     */

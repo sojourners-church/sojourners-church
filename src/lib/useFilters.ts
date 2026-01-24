@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useNanostoreURLSync } from "@/lib/hooks/useNanostoreURLSync";
+import { useNanostoreURLSync } from "@/lib/useNanostoreURLSync";
 
 interface FilterEntry<T> {
   value: T | null | undefined;
