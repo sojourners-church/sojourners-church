@@ -1,7 +1,7 @@
 import Fuse from "fuse.js";
 import { atom, computed, map } from "nanostores";
 
-import type { BlogData } from "@/types";
+import type { BlogData } from "@/data/types";
 
 export interface BlogFilterParamsValue {
   tag?: string;

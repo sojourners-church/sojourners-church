@@ -14,7 +14,7 @@ import {
   CalendarGridHeader,
   CalendarHeaderCell,
   DateInput,
-  DatePicker,
+  DatePicker as DatePickerAria,
   DateSegment,
   Dialog,
   Group,
@@ -24,14 +24,14 @@ import {
 } from "react-aria-components";
 import type { ButtonProps, PopoverProps } from "react-aria-components";
 
-import { useNanostoreURLSync } from "@/hooks/useNanostoreURLSync";
+import type { SermonData } from "@/data/types";
 import { cn } from "@/lib/utils";
-import type { SermonData } from "@/types";
+import useNanostoreURLSync from "@/utils/useNanostoreURLSync";
 
 /* -------------------------------------------------------------------------- */
 /*                                 Types                                       */
 /* -------------------------------------------------------------------------- */
-interface DatePickerCustomProps {
+interface DatePickerProps {
   data: SermonData[];
   type: "from" | "to";
 }
@@ -39,7 +39,7 @@ interface DatePickerCustomProps {
 /* -------------------------------------------------------------------------- */
 /*                               DatePickerCustom                              */
 /* -------------------------------------------------------------------------- */
-const DatePickerCustom: React.FC<DatePickerCustomProps> = ({ type, data }) => {
+const DatePicker: React.FC<DatePickerProps> = ({ type, data }) => {
   const min = getOldestSermonDate(data);
   const max = today(getLocalTimeZone());
 
@@ -68,7 +68,7 @@ const DatePickerCustom: React.FC<DatePickerCustomProps> = ({ type, data }) => {
   };
 
   return (
-    <DatePicker
+    <DatePickerAria
       className="flex"
       value={value}
       onChange={setValue}
@@ -137,7 +137,7 @@ const DatePickerCustom: React.FC<DatePickerCustomProps> = ({ type, data }) => {
           </Calendar>
         </Dialog>
       </MyPopover>
-    </DatePicker>
+    </DatePickerAria>
   );
 };
 
@@ -198,4 +198,4 @@ const getOldestSermonDate = (data: SermonData[]) => {
   );
 };
 
-export default DatePickerCustom;
+export default DatePicker;

@@ -1,7 +1,7 @@
 import { Spin as Hamburger } from "hamburger-react";
 import * as React from "react";
 
-import { ButtonLink } from "@/components/ButtonLink";
+import ButtonLink from "@/components/ButtonLink";
 import {
   Drawer,
   DrawerContent,
@@ -9,7 +9,7 @@ import {
   DrawerOverlay,
   DrawerTitle,
   DrawerTrigger,
-} from "@/lib/components/ui/drawer";
+} from "@/components/ui/drawer";
 
 interface MenuItem {
   path: string;
@@ -89,4 +89,4 @@ const Sidebar: React.FC<{ menu: MenuItem[] }> = ({ menu }) => {
   );
 };
 
-export { Sidebar };
+export default Sidebar;

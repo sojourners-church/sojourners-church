@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Button } from "@/lib/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 type BaseButtonProps = Parameters<typeof Button>[0];
 type ButtonProps = Omit<BaseButtonProps, "asChild">;
@@ -21,4 +21,4 @@ const ButtonLink: React.FC<ButtonLinkProps & React.ComponentProps<"a">> = ({
   );
 };
 
-export { ButtonLink };
+export default ButtonLink;

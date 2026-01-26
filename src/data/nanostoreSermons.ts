@@ -5,7 +5,7 @@ import * as lang from "bible-passage-reference-parser/esm/lang/en.js";
 import Fuse from "fuse.js";
 import { atom, computed, map } from "nanostores";
 
-import type { SermonData } from "@/types";
+import type { SermonData } from "@/data/types";
 
 const bcv = new bcv_parser(lang);
 bcv.set_options({

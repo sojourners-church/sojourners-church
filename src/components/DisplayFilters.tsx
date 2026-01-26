@@ -1,19 +1,24 @@
 import { Settings2, Undo2 } from "lucide-react";
 import { type FC } from "react";
 
-import Combobox from "@/components/Filters/Combobox";
-import DatePickerCustom from "@/components/Filters/DatePickerCustom";
-import Search from "@/components/Filters/Search";
-import { getFilterTitle } from "@/components/Filters/getFilterTitle";
-import { StyledText } from "@/components/StyledText";
-import { useFilters } from "@/hooks/useFilters";
-import { Button } from "@/lib/components/ui/button";
-import type { BlogData, PreacherData, SeriesData, SermonData } from "@/types";
+import Combobox from "@/components/Combobox";
+import DatePicker from "@/components/DatePicker";
+import Search from "@/components/Search";
+import StyledText from "@/components/StyledText";
+import { Button } from "@/components/ui/button";
+import type {
+  BlogData,
+  PreacherData,
+  SeriesData,
+  SermonData,
+} from "@/data/types";
+import { getFilterTitle } from "@/utils/getFilterTitle";
+import { useFilters } from "@/utils/useFilters";
 
 /* -------------------------------------------------------------------------- */
 /*                                    Types                                   */
 /* -------------------------------------------------------------------------- */
-interface FilterProps {
+interface DisplayFiltersProps {
   allSermonData?: SermonData[];
   allSeriesData?: SeriesData[];
   allPreachersData?: PreacherData[];
@@ -24,7 +29,7 @@ interface FilterProps {
 /**
  * Component for filtering sermon and writing posts
  */
-const Filter: FC<FilterProps> = ({
+const DisplayFilters: FC<DisplayFiltersProps> = ({
   allSermonData,
   allSeriesData,
   allPreachersData,
@@ -100,10 +105,8 @@ const Filter: FC<FilterProps> = ({
           {allPreachersData && (
             <Combobox data={allPreachersData} type="preacher" />
           )}
-          {allSermonData && (
-            <DatePickerCustom data={allSermonData} type="from" />
-          )}
-          {allSermonData && <DatePickerCustom data={allSermonData} type="to" />}
+          {allSermonData && <DatePicker data={allSermonData} type="from" />}
+          {allSermonData && <DatePicker data={allSermonData} type="to" />}
           {allTags && <Combobox data={allTags} type="tag" />}
         </div>
       )}
@@ -111,4 +114,4 @@ const Filter: FC<FilterProps> = ({
   );
 };
 
-export default Filter;
+export default DisplayFilters;

@@ -1,22 +1,22 @@
 import * as React from "react";
 
 import Meta from "@/components/Meta";
-import { StyledText } from "@/components/StyledText";
-import { Card, CardContent } from "@/lib/components/ui/card";
+import StyledText from "@/components/StyledText";
+import { CardContent, Card as CardShadcn } from "@/components/ui/card";
 import {
   type BlogData,
   type SermonData,
   isBlog as isBlogTypeGuard,
   isSermon as isSermonTypeGuard,
-} from "@/types";
-import type { Paths } from "@/types";
+} from "@/data/types";
+import type { Paths } from "@/data/types";
 
 interface CardCustomProps {
   data: SermonData | BlogData;
   paths: Paths;
 }
 
-const CardCustom: React.FC<CardCustomProps> = ({ data: inputData, paths }) => {
+const Card: React.FC<CardCustomProps> = ({ data: inputData, paths }) => {
   const {
     id,
     data: { title, date },
@@ -32,7 +32,7 @@ const CardCustom: React.FC<CardCustomProps> = ({ data: inputData, paths }) => {
       : "";
 
   return (
-    <Card className="bg-muted rounded-sm border-none py-0 shadow-sm outline-none">
+    <CardShadcn className="bg-muted rounded-sm border-none py-0 shadow-sm outline-none">
       <CardContent className="flex flex-row p-0">
         <a
           href={`/${baseUrl}/${id}`}
@@ -70,8 +70,8 @@ const CardCustom: React.FC<CardCustomProps> = ({ data: inputData, paths }) => {
           </div>
         </a>
       </CardContent>
-    </Card>
+    </CardShadcn>
   );
 };
 
-export { CardCustom };
+export default Card;

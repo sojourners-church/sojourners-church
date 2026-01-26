@@ -2,13 +2,13 @@ import { SearchIcon } from "lucide-react";
 import { type FC, type HTMLProps, useEffect, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
-import { useDebounce } from "@/hooks/useDebounce";
-import { useNanostoreURLSync } from "@/hooks/useNanostoreURLSync";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/lib/components/ui/input-group";
+} from "@/components/ui/input-group";
+import { useDebounce } from "@/utils/useDebounce";
+import useNanostoreURLSync from "@/utils/useNanostoreURLSync";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                     */

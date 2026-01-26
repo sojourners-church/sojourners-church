@@ -12,7 +12,7 @@ import {
   type SermonFilterParamsValue,
   isSermonFilterKey,
 } from "@/data/nanostoreSermons";
-import { isDateValue } from "@/types";
+import { isDateValue } from "@/data/types";
 
 type FilterKey = string;
 
@@ -23,7 +23,7 @@ const normalize = <T>(value: T | null | undefined) =>
  * Hook to sync a nanostore key with the URL
  * @param key - nanostore key (string)
  */
-export const useNanostoreURLSync = <T = any>(key: FilterKey) => {
+const useNanostoreURLSync = <T = any>(key: FilterKey) => {
   const isSermonKey = isSermonFilterKey(key as string);
   const isBlogKey = isBlogFilterKey(key as string);
 
@@ -81,3 +81,5 @@ export const useNanostoreURLSync = <T = any>(key: FilterKey) => {
 
   return { value: storeValue as T | null, setValue };
 };
+
+export default useNanostoreURLSync;

@@ -1,11 +1,11 @@
 import { Icon } from "@iconify/react";
 
-import { ButtonLink } from "@/components/ButtonLink";
+import ButtonLink from "@/components/ButtonLink";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/lib/components/ui/tooltip";
+} from "@/components/ui/tooltip";
 
 interface SocialMediaLinksProps {
   social: {

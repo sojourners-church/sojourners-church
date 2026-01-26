@@ -1,13 +1,13 @@
 import { ChevronDown } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "@/lib/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/lib/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
 interface MenuItem {
   path: string;
@@ -60,4 +60,4 @@ const NavMenu: React.FC<React.ComponentProps<"nav"> & { menu: MenuItem[] }> = ({
   );
 };
 
-export { NavMenu };
+export default NavMenu;

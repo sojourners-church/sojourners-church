@@ -1,14 +1,14 @@
 import type { FC } from "react";
 import { useEffect, useRef, useState } from "react";
 
-import { ButtonLink } from "@/components/ButtonLink";
-import { StyledText } from "@/components/StyledText";
-import { Skeleton } from "@/lib/components/ui/skeleton";
+import ButtonLink from "@/components/ButtonLink";
+import StyledText from "@/components/StyledText";
+import { Skeleton } from "@/components/ui/skeleton";
 import type {
   SpotifyEmbedController,
   SpotifyIframeApi,
   SpotifyPlaybackEvent,
-} from "@/types";
+} from "@/data/types";
 
 declare global {
   interface Window {
