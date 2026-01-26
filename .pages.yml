@@ -214,7 +214,7 @@ content:
         type: select
         description: Ensure you only select each item ONCE in the whole menu
         options:
-          values: [Blog, Events, Sermons]
+          values: [{value: "blog", label: "Blog"}, {value: "events", label: "Events"}, {value: "sermons", label: "Sermons"}]
       - { name: body, label: Body, type: rich-text }
 
   - name: config
