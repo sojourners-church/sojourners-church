@@ -238,7 +238,7 @@ const pagesCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     order: z.number().optional(),
-    type: z.enum(["Blog", "Events", "Sermons"]).optional(),
+    type: z.enum(["blog", "events", "sermons"]).optional(),
   }),
 });
 

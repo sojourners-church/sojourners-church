@@ -7,7 +7,7 @@ type DynamicPath = {
 
 const findPathByType = (
   menuItems: MenuItem[],
-  targetType: "Blog" | "Events" | "Sermons",
+  targetType: "blog" | "events" | "sermons",
 ): DynamicPath | undefined => {
   const results: DynamicPath[] = [];
 
@@ -39,7 +39,7 @@ const findPathByType = (
 };
 
 export const paths = {
-  blog: findPathByType(menu, "Blog"),
-  events: findPathByType(menu, "Events"),
-  sermons: findPathByType(menu, "Sermons"),
+  blog: findPathByType(menu, "blog"),
+  events: findPathByType(menu, "events"),
+  sermons: findPathByType(menu, "sermons"),
 };
