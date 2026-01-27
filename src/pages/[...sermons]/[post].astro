@@ -1,10 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import StyledText from "@/components/StyledText";
-import SpotifyEmbed from "@/components/SpotifyEmbed";
+import SermonMediaEmbed from "@/components/SermonMediaEmbed";
 import Meta from "@/components/Meta";
 import { format as datefnsFormat } from "date-fns";
-import { render, getEntry } from "astro:content";
+import { render } from "astro:content";
 import { paths } from "@/utils/findPathByType";
 import type { GetStaticPaths } from "astro";
 import {
@@ -27,20 +27,19 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
-const {
-  data: { title, spotifyURL, scripture, date, bulletinURL },
-  preacher: {
-    data: { name: preacher },
-  },
-  series: {
-    data: { title: series },
-  },
-} = page;
+const { title, mediaURL, scripture, date, bulletinURL } = page.data;
+const preacher = page.preacher.data.name;
+const series = page.series.data.title;
 
 const dateFormatted = datefnsFormat(
   new Date(date.valueOf() + date.getTimezoneOffset() * 60 * 1000),
   "LLL dd, yyyy",
 );
+
+const youtube = siteConfig?.data.general.youtube ?? null;
+const youtubeFallbackSearch = youtube
+  ? `${youtube}/search?query=${dateFormatted}`
+  : null;
 
 const { Content: SermonContent } = await render(page);
 const { Content: PreacherContent } = await render(page.preacher);
@@ -63,11 +62,11 @@ const { Content: PreacherContent } = await render(page.preacher);
     </div>
 
     <div>
-      <SpotifyEmbed
-        type="video"
-        spotifyURL={spotifyURL}
-        query={dateFormatted}
-        youtubeURL={siteConfig?.data.general.youtube}
+      <SermonMediaEmbed
+        url={mediaURL}
+        title={title}
+        youtubeFallbackSearch={youtubeFallbackSearch}
+        isCompact={false}
         client:load
       />
     </div>

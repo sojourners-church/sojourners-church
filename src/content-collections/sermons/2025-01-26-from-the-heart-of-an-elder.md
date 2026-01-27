@@ -3,5 +3,5 @@ title: From the Heart of an Elder
 date: 2025-01-26
 series: src/content-collections/series/various.md
 preacher: src/content-collections/preachers/charlie-olson.md
-spotifyURL: https://open.spotify.com/episode/6OTTeJByQ9KR6lMQlFtFUZ?si=3f6d4a7e1efb4a78
+mediaURL: https://open.spotify.com/episode/6OTTeJByQ9KR6lMQlFtFUZ?si=3f6d4a7e1efb4a78
 ---

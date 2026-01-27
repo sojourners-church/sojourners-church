@@ -11,7 +11,7 @@ import {
 
 import { paths } from "@/utils/findPathByType";
 
-import SpotifyEmbed from "@/components/SpotifyEmbed";
+import SermonMediaEmbed from "@/components/SermonMediaEmbed";
 import Filters from "@/components/DisplayFilters";
 import DisplayCards from "@/components/DisplayCards";
 import Meta from "@/components/Meta";
@@ -25,6 +25,11 @@ const latestSermonDateFormatted = datefnsFormat(
   ),
   "LLL dd, yyyy",
 );
+
+const youtube = siteConfig?.data.general.youtube ?? null;
+const youtubeFallbackSearch = youtube
+  ? `${youtube}/search?query=${latestSermonDateFormatted}`
+  : null;
 
 // Get static paths
 export const getStaticPaths = () => {
@@ -57,12 +62,13 @@ export const getStaticPaths = () => {
         {paths}
         client:load
       />
-      <SpotifyEmbed
-        type="audio"
-        spotifyURL={latestSermon.data.spotifyURL}
-        query={latestSermonDateFormatted}
-        youtubeURL={siteConfig?.data.general.youtube}
-        client:idle
+
+      <SermonMediaEmbed
+        url={latestSermon.data.mediaURL}
+        title={latestSermon.data.title}
+        youtubeFallbackSearch={youtubeFallbackSearch}
+        isCompact={true}
+        client:load
       />
     </section>
     <section class="flex flex-col gap-2">

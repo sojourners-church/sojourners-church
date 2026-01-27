@@ -1,14 +1,9 @@
-import type { FC } from "react";
-import { useEffect, useRef, useState } from "react";
+import { CircleX } from "lucide-react";
+import { type FC, useEffect, useRef, useState } from "react";
 
-import ButtonLink from "@/components/ButtonLink";
 import StyledText from "@/components/StyledText";
 import { Skeleton } from "@/components/ui/skeleton";
-import type {
-  SpotifyEmbedController,
-  SpotifyIframeApi,
-  SpotifyPlaybackEvent,
-} from "@/data/types";
+import type { SpotifyEmbedController, SpotifyIframeApi } from "@/data/types";
 
 declare global {
   interface Window {
@@ -17,31 +12,21 @@ declare global {
 }
 
 interface SpotifyEmbedProps {
-  type: "audio" | "video";
-  spotifyURL?: string;
-  query?: string;
-  youtubeURL?: string;
+  isCompact: boolean;
+  URI: string;
+  title: string;
 }
 
-const SpotifyEmbed: FC<SpotifyEmbedProps> = ({
-  type,
-  spotifyURL,
-  query = "",
-  youtubeURL,
-}) => {
-  const isVideo = type === "video";
-  const isAudio = type === "audio";
+const SpotifyEmbed: FC<SpotifyEmbedProps> = ({ isCompact, URI, title }) => {
+  const isVideo = !isCompact;
+  const isAudio = isCompact;
 
-  const match = spotifyURL?.match(/(?<=episode\/)[^?]+/);
-  const spotifyURI = match ? match[0] : null;
-  const videoSrc = spotifyURI
-    ? `https://open.spotify.com/embed/episode/${spotifyURI}/video?utm_source=generator`
-    : "";
+  const videoURL = `https://open.spotify.com/embed/episode/${URI}/video?utm_source=generator`;
 
   const [playerLoaded, setPlayerLoaded] = useState(false);
-  const [hasError, setHasError] = useState(!spotifyURL || !spotifyURI);
+  const [hasError, setHasError] = useState(false);
 
-  const audioRef = useRef<HTMLDivElement | null>(null);
+  const audioFrameRef = useRef<HTMLDivElement | null>(null);
   const controllerRef = useRef<SpotifyEmbedController | null>(null);
   const [iFrameAPI, setIFrameAPI] = useState<SpotifyIframeApi | null>(null);
 
@@ -49,8 +34,6 @@ const SpotifyEmbed: FC<SpotifyEmbedProps> = ({
 
   // Load Spotify API
   useEffect(() => {
-    if (hasError) return; // skip if no valid URL
-
     const script = document.createElement("script");
     script.src = "https://open.spotify.com/embed/iframe-api/v1";
     script.async = true;
@@ -79,8 +62,8 @@ const SpotifyEmbed: FC<SpotifyEmbedProps> = ({
   useEffect(() => {
     if (
       !iFrameAPI ||
-      !audioRef.current ||
-      !spotifyURI ||
+      !audioFrameRef.current ||
+      !URI ||
       playerLoaded ||
       hasError
     ) {
@@ -94,39 +77,16 @@ const SpotifyEmbed: FC<SpotifyEmbedProps> = ({
     }, LOAD_TIMEOUT_MS);
 
     iFrameAPI.createController(
-      audioRef.current,
+      audioFrameRef.current,
       {
-        width: type === "audio" ? "100%" : "0",
-        height: type === "audio" ? "152" : "0",
-        uri: `spotify:episode:${spotifyURI}`,
+        width: isAudio ? "100%" : "0",
+        height: isAudio ? "152" : "0",
+        uri: `spotify:episode:${URI}`,
       },
       (spotifyEmbedController) => {
         spotifyEmbedController.addListener("ready", () => {
           clearTimeout(timeout);
           setPlayerLoaded(true);
-        });
-
-        const handlePlaybackUpdate = (e: SpotifyPlaybackEvent) => {
-          const { position, duration, isBuffering, isPaused, playingURI } =
-            e.data;
-          console.log(
-            `Playback State updates:
-                position - ${position},
-                duration - ${duration},
-                isBuffering - ${isBuffering},
-                isPaused - ${isPaused},
-                playingURI - ${playingURI},
-                duration - ${duration}`,
-          );
-        };
-
-        spotifyEmbedController.addListener(
-          "playback_update",
-          handlePlaybackUpdate,
-        );
-
-        spotifyEmbedController.addListener("playback_started", (e) => {
-          console.log(`Playback started: ${e.data.playingURI}`);
         });
 
         controllerRef.current = spotifyEmbedController;
@@ -137,15 +97,15 @@ const SpotifyEmbed: FC<SpotifyEmbedProps> = ({
       clearTimeout(timeout);
       controllerRef.current?.removeListener("playback_update");
     };
-  }, [iFrameAPI, spotifyURI, playerLoaded, hasError]);
+  }, [iFrameAPI, URI, playerLoaded, hasError]);
 
   return (
-    <div className={`relative ${isAudio ? "h-38" : "h-60 sm:h-80 md:h-100"}`}>
+    <div className="h-full w-full">
       {/* VIDEO FRAME */}
-      {isVideo && spotifyURI && (
+      {isVideo && URI && (
         <iframe
-          title="Spotify Video Episode"
-          src={videoSrc}
+          title={title}
+          src={videoURL}
           className={`h-full w-full ${playerLoaded ? "opacity-100" : "opacity-0"}`}
           style={{ borderRadius: "12px" }}
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -153,47 +113,26 @@ const SpotifyEmbed: FC<SpotifyEmbedProps> = ({
       )}
 
       {/* AUDIO FRAME */}
-      {spotifyURI && (
-        <div ref={audioRef} className={`${isVideo && "hidden"}`} />
-      )}
+      {URI && <div ref={audioFrameRef} className={`${isVideo && "hidden"}`} />}
 
       {/* SKELETON */}
       {!playerLoaded && !hasError && (
         <Skeleton
-          className={`bg-muted absolute top-0 left-0 w-full ${isAudio ? "h-38" : "h-60 sm:h-80 md:h-100"}`}
+          className={`bg-muted absolute top-0 left-0 h-full w-full ${!isCompact && "max-h-90 max-w-160"}`}
+          style={{ borderRadius: "12px" }}
         />
       )}
 
+      {/* Error Fallback */}
       {hasError && (
-        <div
-          className={`text-muted-foreground bg-background absolute top-0 left-0 flex w-full flex-col items-center justify-center rounded-md border text-sm ${isAudio ? "h-38" : "h-60 sm:h-80 md:h-100"}`}
+        <StyledText
+          as="h3"
+          variant={"heading"}
+          className="text-primary flex items-center gap-2 px-8 text-center"
         >
-          {spotifyURL ? (
-            <StyledText
-              as="h3"
-              variant={"subheading"}
-              className="px-8 text-center"
-            >
-              Sorry. Spotify link not available. Refresh to try again.
-            </StyledText>
-          ) : (
-            <StyledText as="h3" variant={"subheading"}>
-              Sorry. No Spotify link available for this sermon.
-            </StyledText>
-          )}
-
-          {youtubeURL && (
-            <ButtonLink
-              variant="link"
-              href={`${youtubeURL}/search?query=${query}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="link to search youtube channel"
-            >
-              Click here to search our YouTube channel.
-            </ButtonLink>
-          )}
-        </div>
+          <CircleX className="h-5 w-5 md:h-6 md:w-6" aria-hidden="true" />
+          Oops! Error loading media.
+        </StyledText>
       )}
     </div>
   );

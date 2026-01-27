@@ -48,8 +48,8 @@ content:
           collection: preachers
           label: "{fields.name}"
         required: true
-      - name: spotifyURL
-        label: Spotify URL
+      - name: mediaURL
+        label: Media URL
         type: string
       - name: bulletinURL
         label: Bulletin URL

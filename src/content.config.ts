@@ -131,7 +131,7 @@ const sermonsCollection = defineCollection({
     preacher: z.preprocess((val) => {
       return getSlugFromFilename(val as string);
     }, reference("preachers")),
-    spotifyURL: z.string().optional(),
+    mediaURL: z.string().optional(),
     bulletinURL: z.string().optional(),
   }),
 });
