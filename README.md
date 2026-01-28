@@ -41,7 +41,7 @@ The **Astro Church Theme** was created to break that cycle. It is a purpose-buil
 ## ✨ Key Features
 
 - 🆓 Completely Free: No licenses, no subscriptions, no hidden costs.
-- 🧠 No coding experience required: See low-code setup in docs. Everything is configured by a settings file in the CMS.
+- 🧠 No coding experience required: Comes with a [low-code setup guide](https://docs-astro-church.netlify.app/guides/low-code-setup/). Everything is configured by a settings file.
 - 🔓 Open-Source: Fully transparent code. Fork it, tweak it, and make it your own.
 - 🎨 Themeable: Easily adjust colors to match your church’s branding.
 - 📝 Markdown-Based Content: You own your data. All sermons, blog posts, and pages are stored as local Markdown files—no complex databases required.
