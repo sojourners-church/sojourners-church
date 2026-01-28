@@ -1,0 +1,8 @@
+---
+title: How the Gospel Came to Us
+date: 2018-11-18
+series: src/content-collections/series/acts-spirit-filled-witnesses-of-the-word-of-christ.md
+scripture:
+  - Acts.10
+preacher: src/content-collections/preachers/tyler-mykkanen.md
+---
