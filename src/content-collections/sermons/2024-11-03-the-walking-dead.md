@@ -5,7 +5,7 @@ series: src/content-collections/series/revelation-living-in-the-valley-between-t
 scripture:
   - Rev.3.1-Rev.3.6
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/11n1hdhmlvjXMVPFTi0bPN?si=523e027764714ed8
+mediaURL: https://open.spotify.com/episode/11n1hdhmlvjXMVPFTi0bPN?si=523e027764714ed8
 ---
 
 Argument: Wake up & stay awake by living in light of what is most real!

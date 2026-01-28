@@ -5,7 +5,7 @@ series: src/content-collections/series/psalms-songs-for-every-season-of-the-soul
 scripture:
   - Ps.3
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/542RZlN4pXOYNFUkk4ShA6?si=1cc4fa7096b648d0
+mediaURL: https://open.spotify.com/episode/542RZlN4pXOYNFUkk4ShA6?si=1cc4fa7096b648d0
 ---
 
 Sermon on Psalm 3 from ⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠Sojourners Church⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠ in Albert Lea, MN. Preached on June 29th, 2025 by Pastor Tyler Mykkanen.

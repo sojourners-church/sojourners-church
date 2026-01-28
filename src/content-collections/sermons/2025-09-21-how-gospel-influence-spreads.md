@@ -5,7 +5,7 @@ series: src/content-collections/series/thessalonians-gospel-encouragement-for-ev
 scripture:
   - 1Thess.2.1-1Thess.2.12
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/2zG1Qdazj8t1vT4hGTHJCC?si=64d6cade3c1c4585
+mediaURL: https://open.spotify.com/episode/2zG1Qdazj8t1vT4hGTHJCC?si=64d6cade3c1c4585
 bulletinURL: https://drive.google.com/file/d/1V5XPhO_YHaUKkeZMCF3WhqHsnuKqeU9y/view
 ---
 

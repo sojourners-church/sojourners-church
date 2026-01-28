@@ -5,7 +5,7 @@ series: src/content-collections/series/various.md
 scripture:
   - Amos.4.6-Amos.4.13
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/3mGOrkY9R8Kf5pf9fr5WqG?si=894ec20010074f12
+mediaURL: https://open.spotify.com/episode/3mGOrkY9R8Kf5pf9fr5WqG?si=894ec20010074f12
 ---
 
 Sermon on Amos 4:6–13 from

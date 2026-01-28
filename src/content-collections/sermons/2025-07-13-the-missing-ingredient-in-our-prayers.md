@@ -5,7 +5,7 @@ series: src/content-collections/series/psalms-songs-for-every-season-of-the-soul
 scripture:
   - Ps.5
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/1eu5jRInRkmr6V6e8OTUq5?si=bb0e9edc5a0a4e2f
+mediaURL: https://open.spotify.com/episode/1eu5jRInRkmr6V6e8OTUq5?si=bb0e9edc5a0a4e2f
 ---
 
 Sermon on Psalm 5 from

@@ -5,7 +5,7 @@ series: src/content-collections/series/psalms-songs-for-every-season-of-the-soul
 scripture:
   - Ps.2
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/4CV01s6CASjFLOgu6tqjRR?si=X2Z3x6CkTr2nb18fMHbm0w
+mediaURL: https://open.spotify.com/episode/4CV01s6CASjFLOgu6tqjRR?si=X2Z3x6CkTr2nb18fMHbm0w
 bulletinURL: https://drive.google.com/file/d/1UZtLMBPCPWTGi558IKNaFSOOZUNpt-5s/view
 ---
 

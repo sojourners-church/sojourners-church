@@ -5,7 +5,7 @@ series: src/content-collections/series/revelation-living-in-the-valley-between-t
 scripture:
   - Rev.2.18-Rev.2.29
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/1bnR06KJZFYjwPaR4kXUYb?si=69c63ed4cdb943b3
+mediaURL: https://open.spotify.com/episode/1bnR06KJZFYjwPaR4kXUYb?si=69c63ed4cdb943b3
 ---
 
 Argument: Be as biased as Jesus.

@@ -5,7 +5,7 @@ series: src/content-collections/series/various.md
 scripture:
   - Eph.4.17-Eph.4.24
 preacher: src/content-collections/preachers/joshua-wilks.md
-spotifyURL: https://open.spotify.com/episode/2gkjpKMXsJAgdzTqWzVlzA?si=f0a592999a3748b0
+mediaURL: https://open.spotify.com/episode/2gkjpKMXsJAgdzTqWzVlzA?si=f0a592999a3748b0
 ---
 
 Sermon on Ephesians 4:17–24 from

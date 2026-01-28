@@ -5,7 +5,7 @@ series: src/content-collections/series/various.md
 scripture:
   - Ps.113
 preacher: src/content-collections/preachers/joshua-wilks.md
-spotifyURL: https://open.spotify.com/episode/5W1VdZ07E6KSU51hPmHycc?si=97637b62c7ce4f64
+mediaURL: https://open.spotify.com/episode/5W1VdZ07E6KSU51hPmHycc?si=97637b62c7ce4f64
 ---
 
 Sermon of Matthew 4:12-25 from Sojourners Church in Albert Lea, MN. Preached on June 8, 2025 by Joshua Wilks, seminary student at \[Bethlehem College and Seminary\]([https://bcsmn.edu/](https://bcsmn.edu/)).

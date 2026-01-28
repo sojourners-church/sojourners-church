@@ -5,7 +5,7 @@ series: src/content-collections/series/revelation-living-in-the-valley-between-t
 scripture:
   - Rev.13.1-Rev.13.10
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/2C1ydGrPNkFbEKCVyH1rSb?si=27df96e6d27f436e
+mediaURL: https://open.spotify.com/episode/2C1ydGrPNkFbEKCVyH1rSb?si=27df96e6d27f436e
 ---
 
 Sermon on Revelation 13:1–10 from

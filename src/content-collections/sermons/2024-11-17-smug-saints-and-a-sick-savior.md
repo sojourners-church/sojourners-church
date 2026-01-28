@@ -5,7 +5,7 @@ series: src/content-collections/series/revelation-living-in-the-valley-between-t
 scripture:
   - Rev.3.14-Rev.3.22
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/2QBLw2BzzY6J5YlXFVnhDc?si=932d88a51a2a48aa
+mediaURL: https://open.spotify.com/episode/2QBLw2BzzY6J5YlXFVnhDc?si=932d88a51a2a48aa
 ---
 
 Argument: Jesus wants needy people.

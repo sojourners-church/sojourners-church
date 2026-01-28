@@ -5,7 +5,7 @@ series: src/content-collections/series/psalms-songs-for-every-season-of-the-soul
 scripture:
   - Ps.10
 preacher: src/content-collections/preachers/caleb-geary.md
-spotifyURL: https://open.spotify.com/episode/2RMuq9C0AHx5vg2hNDkEOp?si=323a95bbbdaa491b
+mediaURL: https://open.spotify.com/episode/2RMuq9C0AHx5vg2hNDkEOp?si=323a95bbbdaa491b
 bulletinURL: https://drive.google.com/file/d/1Ao65dWKeBKTJd4MITowSVLJ7xmdqCnAG/view
 ---
 

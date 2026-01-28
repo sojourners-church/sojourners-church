@@ -5,5 +5,5 @@ series: src/content-collections/series/revelation-living-in-the-valley-between-t
 scripture:
   - Rev.2.8-Rev.2.11
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/73m7QEUy34l1JWmsCVnVtg?si=e9e7aca22c19456c
+mediaURL: https://open.spotify.com/episode/73m7QEUy34l1JWmsCVnVtg?si=e9e7aca22c19456c
 ---

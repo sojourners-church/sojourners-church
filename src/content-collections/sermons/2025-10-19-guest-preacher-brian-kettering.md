@@ -5,7 +5,7 @@ series: src/content-collections/series/various.md
 scripture:
   - Col.2.16-Col.2.19
 preacher: src/content-collections/preachers/brian-kettering.md
-spotifyURL: https://open.spotify.com/episode/4aKZywSiVmlShwubCEjmFt?si=5JDuKmZCSL6y6RZ4Rc57NA
+mediaURL: https://open.spotify.com/episode/4aKZywSiVmlShwubCEjmFt?si=5JDuKmZCSL6y6RZ4Rc57NA
 bulletinURL: https://drive.google.com/file/d/1TiOxHMgG327sVwnU4J8PX6TO0G5XacWl/view
 ---
 

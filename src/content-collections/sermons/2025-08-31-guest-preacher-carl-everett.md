@@ -5,7 +5,7 @@ series: src/content-collections/series/various.md
 scripture:
   - Eph.2.1-Eph.2.10
 preacher: src/content-collections/preachers/carl-everett.md
-spotifyURL: https://open.spotify.com/episode/5rqTuPHGtSXp5cnh5ONf6p?si=fc54e1db4a634006
+mediaURL: https://open.spotify.com/episode/5rqTuPHGtSXp5cnh5ONf6p?si=fc54e1db4a634006
 bulletinURL: https://drive.google.com/file/d/1dKTNZjWrKb5RrZORBtmdfhMjFah4wkzY/view
 ---
 

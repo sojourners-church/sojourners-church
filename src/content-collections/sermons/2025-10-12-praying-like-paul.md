@@ -5,7 +5,7 @@ series: src/content-collections/series/thessalonians-gospel-encouragement-for-ev
 scripture:
   - 1Thess.3.9-1Thess.3.13
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/3fc2cn5uD4KFe8KNPazqw1?si=Vncwm3WJRoq5K-T2wM7cug
+mediaURL: https://open.spotify.com/episode/3fc2cn5uD4KFe8KNPazqw1?si=Vncwm3WJRoq5K-T2wM7cug
 bulletinURL: https://drive.google.com/file/d/1-5Y7C6E0u9VIOMyJtBsX3ctHIyk9zAvW/view
 ---
 

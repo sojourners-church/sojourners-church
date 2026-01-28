@@ -5,7 +5,7 @@ series: src/content-collections/series/revelation-living-in-the-valley-between-t
 scripture:
   - Rev.22.6-Rev.22.21
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/7rlsSS2vVNy8IDDTD2CUvJ?si=27b08941eefd4c90
+mediaURL: https://open.spotify.com/episode/7rlsSS2vVNy8IDDTD2CUvJ?si=27b08941eefd4c90
 ---
 
 Sermon on Revelation 22:6–21 from

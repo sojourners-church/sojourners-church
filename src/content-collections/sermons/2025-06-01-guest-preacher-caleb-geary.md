@@ -5,7 +5,7 @@ series: src/content-collections/series/various.md
 scripture:
   - Luke.18.9-Luke.18.14
 preacher: src/content-collections/preachers/caleb-geary.md
-spotifyURL: https://open.spotify.com/episode/5uTPFZumkrFgwjXmQVfjSv?si=73ed5e3b108f4abc
+mediaURL: https://open.spotify.com/episode/5uTPFZumkrFgwjXmQVfjSv?si=73ed5e3b108f4abc
 ---
 
 Sermon on Luke 18:9–14 from

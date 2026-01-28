@@ -5,7 +5,7 @@ series: src/content-collections/series/revelation-living-in-the-valley-between-t
 scripture:
   - Rev.11.15-Rev.11.19
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/1ZbV8l7WaM9iQIrnwwKRdX?si=6ad697d7cd4441fb
+mediaURL: https://open.spotify.com/episode/1ZbV8l7WaM9iQIrnwwKRdX?si=6ad697d7cd4441fb
 ---
 
 Sermon on Revelation 11:15–19 from

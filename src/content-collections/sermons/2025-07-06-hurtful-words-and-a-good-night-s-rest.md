@@ -5,7 +5,7 @@ series: src/content-collections/series/psalms-songs-for-every-season-of-the-soul
 scripture:
   - Ps.4
 preacher: src/content-collections/preachers/caleb-geary.md
-spotifyURL: https://open.spotify.com/episode/6dLvGSsQgdrCGcboOkjaHo?si=ff54846d76d0411c
+mediaURL: https://open.spotify.com/episode/6dLvGSsQgdrCGcboOkjaHo?si=ff54846d76d0411c
 ---
 
 Sermon on Psalm 4 from

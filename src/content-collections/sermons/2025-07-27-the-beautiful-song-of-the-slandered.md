@@ -5,5 +5,5 @@ series: src/content-collections/series/psalms-songs-for-every-season-of-the-soul
 scripture:
   - Ps.7
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/1oz28lCh5sTdvEaXpSAizk?si=0c91910ceeee4cec
+mediaURL: https://open.spotify.com/episode/1oz28lCh5sTdvEaXpSAizk?si=0c91910ceeee4cec
 ---

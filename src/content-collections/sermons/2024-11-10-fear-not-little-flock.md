@@ -5,7 +5,7 @@ series: src/content-collections/series/revelation-living-in-the-valley-between-t
 scripture:
   - Rev.3.7-Rev.3.13
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/0Lsy50F0yrr6cdVP4Cuoey?si=f6e4913725cd414e
+mediaURL: https://open.spotify.com/episode/0Lsy50F0yrr6cdVP4Cuoey?si=f6e4913725cd414e
 ---
 
 Argument: Hold fast to what you have in Jesus.

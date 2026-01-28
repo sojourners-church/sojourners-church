@@ -5,7 +5,7 @@ series: src/content-collections/series/various.md
 scripture:
   - Col.2.6-Col.2.15
 preacher: src/content-collections/preachers/david-warren.md
-spotifyURL: https://open.spotify.com/episode/6Up5pLPXZuqKmd32Rf3Ybg?si=7fbc6bfea8a048de
+mediaURL: https://open.spotify.com/episode/6Up5pLPXZuqKmd32Rf3Ybg?si=7fbc6bfea8a048de
 ---
 
 Sermon on Colossians 2:6–15 from

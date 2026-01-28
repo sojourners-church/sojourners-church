@@ -5,6 +5,6 @@ series: src/content-collections/series/thessalonians-gospel-encouragement-for-ev
 scripture:
   - 1Thess.5.1-1Thess.5.11
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/4PS61WoaowBVFaAWT5Q6I5?si=af7edd9d376d4f8a
+mediaURL: https://open.spotify.com/episode/4PS61WoaowBVFaAWT5Q6I5?si=af7edd9d376d4f8a
 bulletinURL: https://drive.google.com/file/d/1bHGDQlEmFLMc2HWYWa4quq8Z-eb0-mHt/view
 ---

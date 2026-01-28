@@ -5,7 +5,7 @@ series: src/content-collections/series/revelation-living-in-the-valley-between-t
 scripture:
   - Rev.16
 preacher: src/content-collections/preachers/tyler-mykkanen.md
-spotifyURL: https://open.spotify.com/episode/4MPhdf1RCQG5sMiiYc5xnf?si=3c071deac155425b
+mediaURL: https://open.spotify.com/episode/4MPhdf1RCQG5sMiiYc5xnf?si=3c071deac155425b
 ---
 
 Sermon on Revelation 16:1–21 from

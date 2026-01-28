@@ -5,5 +5,5 @@ series: src/content-collections/series/psalms-songs-for-every-season-of-the-soul
 scripture:
   - Ps.6
 preacher: src/content-collections/preachers/caleb-geary.md
-spotifyURL: https://open.spotify.com/episode/3z17fFrb93dyZpbkyLTMli?si=3915bf03f1494e44
+mediaURL: https://open.spotify.com/episode/3z17fFrb93dyZpbkyLTMli?si=3915bf03f1494e44
 ---
