@@ -3,16 +3,18 @@ import { getCollection, render } from "astro:content";
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Meta from "@/components/Meta";
-import MarkdownContentWrapper from "@/components/MarkdownContentWrapper.astro";
-import { StyledText } from "@/components/StyledText";
-import { paths } from "@/lib/getMenuItems";
+// import MarkdownContentWrapper from "@/components/MarkdownContentWrapper.astro";
+import StyledText from "@/components/StyledText";
+import { paths } from "@/utils/findPathByType";
+
+import { allBlogData } from "@/data/contentCollectionDataFetching";
 
 import type { GetStaticPaths } from "astro";
 
 // Get static paths
 export const getStaticPaths = (async () => {
   return paths.blog?.path
-    ? (await getCollection("blog")).map((page) => ({
+    ? allBlogData.map((page) => ({
         params: {
           post: `${paths.blog?.path}/${page.id}`,
         },
@@ -29,14 +31,15 @@ const { Content } = await render(page);
 
 <BaseLayout pageTitle={page.data.title}>
   <main class="layout-base justify-items-center py-8">
-    <MarkdownContentWrapper>
-      <Fragment slot="heading">
-        <StyledText as="h1" variant="displayLG">
-          {page.data.title}
-        </StyledText>
-        <Meta tags={page.data.tags} {paths} linked client:load />
-      </Fragment>
-      <Content slot="content" />
-    </MarkdownContentWrapper>
+    <div
+      class="prose prose-custom prose-a:hover:decoration-primary prose-a:hover:text-foreground lg:max-w-[80ch]"
+    >
+      <StyledText as="h1" variant="displayLG">
+        {page.data.title}
+      </StyledText>
+      <Meta tags={page.data.tags} {paths} linked client:load />
+
+      <Content />
+    </div>
   </main>
 </BaseLayout>

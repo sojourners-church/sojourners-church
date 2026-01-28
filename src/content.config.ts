@@ -9,24 +9,29 @@ const getSlugFromFilename = (val: string): string => {
   return slug;
 };
 
-const isSunday = (input: Date) => {
-  const date = new Date(
-    input.valueOf() + input.getTimezoneOffset() * 60 * 1000,
-  );
-  return date.getDay() === 0;
-};
+// const isSunday = (input: Date) => {
+//   const date = new Date(
+//     input.valueOf() + input.getTimezoneOffset() * 60 * 1000,
+//   );
+//   return date.getDay() === 0;
+// };
 
 const siteConfig = defineCollection({
-  loader: glob({ pattern: "site.config.json", base: "./src/content/" }),
+  loader: glob({
+    pattern: "site.config.json",
+    base: "./src/content-collections/",
+  }),
   schema: z.object({
     general: z.object({
       name: z.string(),
       description: z.string(),
+      logo: z.string().optional(),
       youtube: z.string().optional(),
     }),
     header: z
       .object({
-        logo: z.string().optional(),
+        displayTitle: z.boolean(),
+        displayLogo: z.boolean(),
       })
       .optional(),
     body: z
@@ -71,14 +76,14 @@ const siteConfig = defineCollection({
           .optional(),
         form: z
           .object({
-            active: z.boolean(),
+            isActive: z.boolean(),
             heading: z.string().optional(),
             description: z.string().optional(),
           })
           .optional(),
         give: z
           .object({
-            active: z.boolean(),
+            isActive: z.boolean(),
             heading: z.string().optional(),
             description: z.string().optional(),
             link: z.string().optional(),
@@ -88,6 +93,7 @@ const siteConfig = defineCollection({
       .optional(),
     theme: z
       .object({
+        colorScheme: z.string(),
         customCSS: z.string().optional(),
       })
       .optional(),
@@ -95,22 +101,27 @@ const siteConfig = defineCollection({
 });
 
 const sermonsCollection = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/sermons" }),
+  loader: glob({
+    pattern: "**/[^_]*.md",
+    base: "./src/content-collections/sermons",
+  }),
   schema: z.object({
     title: z.string(),
-    date: z.date().superRefine((val, ctx) => {
-      if (!isSunday(val)) {
-        const weekday = val.toLocaleDateString("en-US", {
-          weekday: "long",
-          timeZone: "UTC",
-        });
+    date: z.date(),
+    // Replace regular date validator with this to limit valid dates to Sundays.
+    // date: z.date().superRefine((val, ctx) => {
+    //   if (!isSunday(val)) {
+    //     const weekday = val.toLocaleDateString("en-US", {
+    //       weekday: "long",
+    //       timeZone: "UTC",
+    //     });
 
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: `Sermon date must be a Sunday, received ${weekday}`,
-        });
-      }
-    }),
+    //     ctx.addIssue({
+    //       code: z.ZodIssueCode.custom,
+    //       message: `Sermon date must be a Sunday, received ${weekday}`,
+    //     });
+    //   }
+    // }),
     series: z.preprocess((val) => {
       return getSlugFromFilename(val as string);
     }, reference("series")),
@@ -120,17 +131,19 @@ const sermonsCollection = defineCollection({
     preacher: z.preprocess((val) => {
       return getSlugFromFilename(val as string);
     }, reference("preachers")),
-    spotifyURL: z.string().optional(),
+    mediaURL: z.string().optional(),
     bulletinURL: z.string().optional(),
   }),
 });
 
 const seriesCollection = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/series" }),
+  loader: glob({
+    pattern: "**/[^_]*.md",
+    base: "./src/content-collections/series",
+  }),
   schema: z.object({
     title: z.string(),
-    image: z.string(),
-    imageSquare: z.string(),
+    image: z.string().optional(),
     startDate: z.date(),
     book: z
       .array(
@@ -208,26 +221,36 @@ const seriesCollection = defineCollection({
 });
 
 const preachersCollection = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/preachers" }),
+  loader: glob({
+    pattern: "**/[^_]*.md",
+    base: "./src/content-collections/preachers",
+  }),
   schema: z.object({
     name: z.string(),
-    isGuest: z.boolean().optional(),
+    isGuest: z.boolean(),
     priority: z.number(),
-    bio: z.string().optional(),
     image: z.string().optional(),
   }),
 });
 
 const pagesCollection = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/pages" }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content-collections/pages" }),
+  schema: z.object({
+    title: z.string(),
+    order: z.number().optional(),
+    type: z.enum(["blog", "events", "sermons"]).optional(),
+  }),
 });
 
 const blogCollection = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/blog" }),
+  loader: glob({
+    pattern: "**/[^_]*.md",
+    base: "./src/content-collections/blog",
+  }),
   schema: z.object({
     title: z.string(),
     date: z.date(),
-    tags: z.array(z.string()).optional(),
+    tags: z.array(z.string()),
   }),
 });
 

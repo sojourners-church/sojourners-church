@@ -1,26 +1,21 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { StyledText } from "@/components/StyledText";
-import { ButtonLink } from "@/components/ButtonLink";
+import StyledText from "@/components/StyledText";
+import ButtonLink from "@/components/ButtonLink";
 import {
-  getAllPreachersData,
-  getAllSeriesData,
-  getAllSermonData,
-} from "@/lib/posts";
+  siteConfig,
+  allSermonData,
+  allPreachersData,
+  allSeriesData,
+} from "@/data/contentCollectionDataFetching";
 
-import { paths } from "@/lib/getMenuItems";
+import { paths } from "@/utils/findPathByType";
 
-import SpotifyEmbed from "@/components/SpotifyEmbed";
-import Filter from "@/components/Filters/Filter";
-import { CardDisplay } from "@/components/Cards/CardDisplay";
+import SermonMediaEmbed from "@/components/SermonMediaEmbed";
+import Filters from "@/components/DisplayFilters";
+import DisplayCards from "@/components/DisplayCards";
 import Meta from "@/components/Meta";
 import { format as datefnsFormat } from "date-fns";
-import { getEntry } from "astro:content";
-const allSermonData = await getAllSermonData();
-const allSeriesData = await getAllSeriesData();
-const allPreachersData = await getAllPreachersData();
-
-const config = await getEntry("config", "siteconfig");
 
 const latestSermon = allSermonData[0];
 const latestSermonDateFormatted = datefnsFormat(
@@ -30,6 +25,11 @@ const latestSermonDateFormatted = datefnsFormat(
   ),
   "LLL dd, yyyy",
 );
+
+const youtube = siteConfig?.data.general.youtube ?? null;
+const youtubeFallbackSearch = youtube
+  ? `${youtube}/search?query=${latestSermonDateFormatted}`
+  : null;
 
 // Get static paths
 export const getStaticPaths = () => {
@@ -62,22 +62,23 @@ export const getStaticPaths = () => {
         {paths}
         client:load
       />
-      <SpotifyEmbed
-        type="audio"
-        spotifyURL={latestSermon.data.spotifyURL}
-        query={latestSermonDateFormatted}
-        youtubeURL={config?.data.general.youtube}
-        client:idle
+
+      <SermonMediaEmbed
+        url={latestSermon.data.mediaURL}
+        title={latestSermon.data.title}
+        youtubeFallbackSearch={youtubeFallbackSearch}
+        isCompact={true}
+        client:load
       />
     </section>
     <section class="flex flex-col gap-2">
-      <Filter
+      <Filters
         {allSermonData}
         {allSeriesData}
         {allPreachersData}
         client:only="react"
       />
-      <CardDisplay data={allSermonData} paths={paths} client:load />
+      <DisplayCards data={allSermonData} paths={paths} client:load />
     </section>
   </main>
 </BaseLayout>

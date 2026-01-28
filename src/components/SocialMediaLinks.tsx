@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 
-import { ButtonLink } from "@/components/ButtonLink";
+import ButtonLink from "@/components/ButtonLink";
 import {
   Tooltip,
   TooltipContent,

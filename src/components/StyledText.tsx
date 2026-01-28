@@ -36,4 +36,4 @@ const StyledText: React.FC<
   );
 };
 
-export { StyledText };
+export default StyledText;

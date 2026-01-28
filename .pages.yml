@@ -15,7 +15,7 @@ content:
   - name: sermons
     label: Sermons
     type: collection
-    path: src/content/sermons
+    path: src/content-collections/sermons
     filename: "{fields.date}-{fields.title}.md"
     view:
       fields: [title, date, preacher, scripture]
@@ -48,8 +48,8 @@ content:
           collection: preachers
           label: "{fields.name}"
         required: true
-      - name: spotifyURL
-        label: Spotify URL
+      - name: mediaURL
+        label: Media URL
         type: string
       - name: bulletinURL
         label: Bulletin URL
@@ -60,7 +60,7 @@ content:
   - name: preachers
     label: Preachers
     type: collection
-    path: src/content/preachers
+    path: src/content-collections/preachers
     filename: "{primary}.md"
     fields:
       - name: name
@@ -73,47 +73,41 @@ content:
       - name: isGuest
         label: Guest Preacher
         type: boolean
+        required: true
         default: true
       - name: priority
         label: Priority (1 is highest, 0 is lowest)
         type: number
         default: 0
-      - name: bio
-        label: Bio
-        type: rich-text
       - name: image
         label: Upload a Picture
         type: image
+      - name: body
+        label: Bio
+        type: rich-text
     view:
       primary: name
   - name: series
     label: Sermon Series
     type: collection
-    path: src/content/series
+    path: src/content-collections/series
     filename: "{primary}.md"
     view:
-      fields: [title, imageSquare, book]
+      fields: [title, image, book]
     fields:
       - name: title
         label: Series Title
         type: string
         required: true
+      - name: startDate
+        label: Start Date
+        type: date
+        required: true
       - name: image
         label: Series Image
         type: image
-        required: true
         options:
           media: series-graphics
-      - name: imageSquare
-        label: Square series image
-        type: image
-        required: true
-        options:
-          media: series-graphics
-      - name: startDate
-        label: Start date
-        type: date
-        required: true
       - name: book
         label: Bible Book(s)
         type: select
@@ -191,7 +185,7 @@ content:
   - name: blog
     label: Blog
     type: collection
-    path: src/content/blog
+    path: src/content-collections/blog
     filename: "{fields.date}-{fields.title}.md"
     fields:
       - { name: title, label: Title, type: string, required: true }
@@ -201,7 +195,7 @@ content:
   - name: pages
     label: Pages
     type: collection
-    path: src/content/pages
+    path: src/content-collections/pages
     filename: "{primary}.md"
     view:
       fields: [title, order]
@@ -213,20 +207,25 @@ content:
     fields:
       - { name: title, label: Title, type: string, required: true }
       - name: order
-        label: Menu Order
+        label: Order
         type: number
       - name: type
         label: Type
         type: select
         description: Ensure you only select each item ONCE in the whole menu
         options:
-          values: [Blog, Events, Sermons]
+          values:
+            [
+              { value: "blog", label: "Blog" },
+              { value: "events", label: "Events" },
+              { value: "sermons", label: "Sermons" },
+            ]
       - { name: body, label: Body, type: rich-text }
 
   - name: config
     label: Site Config
     type: file
-    path: src/content/site.config.json
+    path: src/content-collections/site.config.json
     fields:
       - name: general
         label: General Settings
@@ -240,12 +239,26 @@ content:
               required: true,
               description: For SEO metadata.,
             }
+          - { name: logo, label: Logo, type: image }
           - { name: youtube, label: YouTube Channel, type: string }
       - name: header
         label: Header
         type: object
         fields:
-          - { name: logo, label: Logo, type: image }
+          - {
+              name: displayTitle,
+              label: Display Church Name in Header,
+              type: boolean,
+              default: true,
+              required: true,
+            }
+          - {
+              name: displayLogo,
+              label: Display Church Logo in Header,
+              type: boolean,
+              default: false,
+              required: true,
+            }
       - name: body
         label: Body
         type: object
@@ -325,7 +338,7 @@ content:
             label: Form
             type: object
             fields:
-              - name: active
+              - name: isActive
                 label: Active
                 type: boolean
                 default: true
@@ -340,7 +353,7 @@ content:
             label: Give
             type: object
             fields:
-              - name: active
+              - name: isActive
                 label: Active
                 type: boolean
                 default: true
@@ -358,6 +371,20 @@ content:
         label: Theme
         type: object
         fields:
+          - name: colorScheme
+            label: Color Scheme
+            type: select
+            description: Select Auto to support user preferences or Light or Dark to force theme color scheme.
+            default: auto
+            required: true
+            options:
+              values:
+                - value: auto
+                  label: Auto
+                - value: light
+                  label: Light
+                - value: dark
+                  label: Dark
           - name: customCSS
             label: Custom CSS
             type: code

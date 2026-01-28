@@ -1,24 +1,21 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { StyledText } from "@/components/StyledText";
-import SpotifyEmbed from "@/components/SpotifyEmbed";
+import StyledText from "@/components/StyledText";
+import SermonMediaEmbed from "@/components/SermonMediaEmbed";
 import Meta from "@/components/Meta";
 import { format as datefnsFormat } from "date-fns";
-import { marked } from "marked";
-
-import { render, getEntry } from "astro:content";
-
-import { paths } from "@/lib/getMenuItems";
-
+import { render } from "astro:content";
+import { paths } from "@/utils/findPathByType";
 import type { GetStaticPaths } from "astro";
-import { getAllSermonData } from "@/lib/posts";
-
-const config = await getEntry("config", "siteconfig");
+import {
+  allSermonData,
+  siteConfig,
+} from "@/data/contentCollectionDataFetching";
 
 // Get static paths
 export const getStaticPaths = (async () => {
   return paths.sermons?.path
-    ? (await getAllSermonData()).map((page) => ({
+    ? allSermonData.map((page) => ({
         params: {
           post: `${paths.sermons?.path}/${page.id}`,
         },
@@ -30,23 +27,22 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
-const {
-  data: { title, spotifyURL, scripture, date, bulletinURL },
-  preacher: {
-    data: { name: preacher, bio },
-  },
-  series: {
-    data: { title: series },
-  },
-} = page;
+const { title, mediaURL, scripture, date, bulletinURL } = page.data;
+const preacher = page.preacher.data.name;
+const series = page.series.data.title;
 
 const dateFormatted = datefnsFormat(
   new Date(date.valueOf() + date.getTimezoneOffset() * 60 * 1000),
   "LLL dd, yyyy",
 );
 
-const { Content } = await render(page);
-const preacherBio = bio ? marked.parse(bio) : null;
+const youtube = siteConfig?.data.general.youtube ?? null;
+const youtubeFallbackSearch = youtube
+  ? `${youtube}/search?query=${dateFormatted}`
+  : null;
+
+const { Content: SermonContent } = await render(page);
+const { Content: PreacherContent } = await render(page.preacher);
 ---
 
 <BaseLayout pageTitle={page.data.title}>
@@ -66,11 +62,11 @@ const preacherBio = bio ? marked.parse(bio) : null;
     </div>
 
     <div>
-      <SpotifyEmbed
-        type="video"
-        spotifyURL={spotifyURL}
-        query={dateFormatted}
-        youtubeURL={config?.data.general.youtube}
+      <SermonMediaEmbed
+        url={mediaURL}
+        title={title}
+        youtubeFallbackSearch={youtubeFallbackSearch}
+        isCompact={false}
         client:load
       />
     </div>
@@ -78,7 +74,7 @@ const preacherBio = bio ? marked.parse(bio) : null;
     <div
       class="prose prose-custom prose-a:hover:decoration-primary prose-a:hover:text-foreground max-w-none"
     >
-      {page.rendered?.html ? <Content /> : <p set:html={preacherBio} />}
+      {page.rendered?.html ? <SermonContent /> : <PreacherContent />}
       {
         bulletinURL && (
           <a href={bulletinURL} target="_blank" rel="noopener noreferrer">

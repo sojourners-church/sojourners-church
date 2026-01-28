@@ -5,8 +5,8 @@ import * as React from "react";
 import slugify from "slugify";
 
 import { Badge } from "@/components/ui/badge";
-import useIsMobile from "@/lib/hooks/useIsMobile";
-import type { Paths } from "@/lib/types";
+import type { Paths } from "@/data/types";
+import useIsMobile from "@/utils/useIsMobile";
 
 interface MetaProps {
   date?: Date;
